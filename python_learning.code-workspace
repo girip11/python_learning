@@ -11,6 +11,10 @@
     "files.insertFinalNewline": true,
     "files.associations": {
       "*.md.html": "markdown"
-    }
+    },
+    "shellcheck.enable": true,
+    "shellcheck.useWorkspaceRootAsCwd": true,
+    "shellcheck.run": "onSave",
+    "shellformat.flag": "-i 2 -ci -sr -bn"
   }
 }
