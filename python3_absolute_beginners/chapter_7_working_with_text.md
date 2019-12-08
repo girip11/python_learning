@@ -71,7 +71,7 @@ tab_text.expandtabs(4) # default tab size is 8 spaces
 
 ```
 
-## advanced formatting
+## Advanced formatting
 
 `string.format(*args, **kwargs)`
 
@@ -87,12 +87,6 @@ format_string.format("John", message = "Hello world")
 format_string = "{0!s} INR equals {1!r} USD: {message!s}"
 format_string.format(68, '1', message = "INR to USD conversion")
 ```
-
-## Format specification
-
-## Integer formatting
-
-## Floating point formatting
 
 ## Editing strings
 
@@ -125,6 +119,7 @@ text.find("text")
 text.rfind("sample")
 
 # string.index(sub, start_index, end_index)
+# raises exception when the substring is not in the original string
 text.index("sample")
 
 # string.rindex. Starts searching from the end
@@ -265,10 +260,12 @@ file.write(content)
 file.close()
 
 # writing a list of strings
+# DOESNOT write each list entry to a newline
 # writelines() does not add line separators, so you’ll have to remember to put in the extra \n characters yourself.
 file = open("loren_ipsum.txt", "w")
 lines = content.split("\n")
 file.writelines(lines)
+# file.writelines("\n")
 file.close()
 ```
 

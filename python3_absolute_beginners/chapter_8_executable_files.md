@@ -80,14 +80,26 @@ from sys import argv as arguments
 ## Using exec() and eval()
 
 Both are built-in functions. Use these with caution (security issues).
-`exec(string)` - execute arbitrary strings as python statements
-`eval(string)` - evaluate a python statement. example conditional expressions
+
+* `exec(string)` - execute arbitrary strings as python statements. Always returns `None`. Can execute a block of python code as well which can contain classes, functions etc.
+* `eval(string)` - Evaluates a [single python expression](https://docs.python.org/3/reference/expressions.html) and returns the **value of the expression**.
 
 ```Python
 # using exec
 fruits = ["Apple", "Orange", "Mango"]
 code = "for fruit in fruits: print(fruit)"
 exec(code)
+
+code = """
+def greet(msg):
+    print(msg)
+
+greet("Hello world")
+"""
+exec(code)
+
+# function call is a simple expression
+eval('greet("Hello World")')
 
 # using eval
 value = eval(input("Enter a number:"))

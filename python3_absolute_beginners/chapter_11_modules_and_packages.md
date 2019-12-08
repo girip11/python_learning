@@ -33,12 +33,12 @@ random_gen = __import__(module_name)
 
 ## Structuring modules
 
-Good practice to have all the imports at the top. Important variables follow the module imports.
+**Good practice to have all the imports at the top**. Important variables follow the module imports.
 Module variables with leading underscore are treated internal to the module and are not imported to other modules when using wildcard import `from module import *`. But **explicit import is allowed**.
 
-## \_\_name\_\_ variable
+## `__name__` variable
 
-Used when module is executed on its own.
+Used when module is executed on its own like a python script.
 
 ```Python
 # module variables
@@ -54,7 +54,7 @@ if __name__ == "__main__"
 
 ## Reload module changes dynamically
 
-using the python module **imp**. Module reloads are **additive**. For instance, add a method, rename the method, after the module reloads we will find both the methods available.
+Using the python module **imp**. Module reloads are **additive**. For instance, add a method, rename the method, after the module reloads we will find both the methods available.
 
 ```Python
 import my_module
@@ -112,7 +112,7 @@ __all__ = ["module1"]
 ## Python packages
 
 * standard modules - standard library is on **sys.path**.
-* Contributed packages - packages at **Python Package Index**. Can use tools like **pip**.
+* Contributed packages - packages at [**Python Package Index**](https://pypi.org/). Can use tools like **pip**.
 
 ---
 
