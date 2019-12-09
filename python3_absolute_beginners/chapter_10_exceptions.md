@@ -4,11 +4,13 @@
 
 ```Python
 try:
-  # code block
+    # code block
 except SomeSpecificError as e:
-  # exception handling for SomeSpecificError
+    # exception handling for SomeSpecificError
+except (KeyError, SomeError2):
+    pass
 except:
-  # catch all other exceptions
+    # catch all other exceptions
 ```
 
 ## Classes of Exceptions
@@ -21,12 +23,12 @@ except:
 try:
   1/0
 except ZeroDivisionError as ex:
-  ex_class = ex.__class__
-  print(ex_class.__name__)
-  while ex_class.__bases__:
-    base = ex_class.__bases__[0]
-    print("""base class of {0!s} is {1!s}""".format(ex_class.__name__, base.__name__))
-    ex_class = base
+    ex_class = ex.__class__
+    print(ex_class.__name__)
+    while ex_class.__bases__:
+        base = ex_class.__bases__[0]
+        print("""base class of {0!s} is {1!s}""".format(ex_class.__name__, base.__name__))
+        ex_class = base
 ```
 
 ### Exception classes hierarchy

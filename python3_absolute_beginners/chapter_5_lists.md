@@ -1,6 +1,6 @@
 # Sequences
 
-Python supports negative indexing of sequences. First index is 0 while last element index is counted in reverse as -1, last but previous element index -2 and so on.
+Python supports negative indexing of sequences. First index is 0 while last element index is counted in reverse as -1, last but previous element with index -2 and so on.
 
 ## Using python help
 
@@ -10,6 +10,14 @@ dir(str)
 
 # provides documentation for the method
 help(str.upper)
+
+# use __doc__ method on objects
+print(str.upper.__doc__)
+
+# Another method to get the documentation of an object
+# Remember functions in python are also objects
+import inspect
+inspect.getdoc(str.upper)
 ```
 
 ## String
@@ -47,7 +55,7 @@ print(planet * 3)
 fruits="Apple,Mango,Orange"
 fruits_list = fruits.split(",")
 
-# convert a string to list, tuple
+# convert a string to list of characters, tuple
 list(planet)
 tuple(planet)
 
@@ -68,10 +76,10 @@ fruits.count("e")
 # empty string evaluates to false
 empty_string=""
 if not empty_string:
-  print("Cant print empty string")
+  print("Empty string evaluates to false in python")
 
 if len(empty_string) == 0:
-  print("Can't print empty string")
+  print("Empty string")
 ```
 
 ## Tuple
@@ -109,7 +117,7 @@ list(l4_tuples)
 ("10.10.10.10", "192.168.10.10", "12345", "80", "T") == ("10.10.10.10", "192.168.10.10", "12345", "80", "T")
 
 # join tuple values
-"_".join(l4_tuples)
+"_".join(l4_tuples) # prints 'srcip_destip_srcport_destport_protocol'
 ```
 
 ## List
@@ -197,6 +205,9 @@ max(numbers)
 # new list without modifying existing list
 sorted(numbers)
 
+# inplace sorting
+numbers.sort()
+
 # reversing list inplace
 numbers.reverse()
 
@@ -270,7 +281,7 @@ Key must be of immutable type integer, float, string, tuple
 ```Python
 empty_dict = {}
 
-details = {"name": "John Doe", "age": 25, "mobile": "123456789", "gender", "male"}
+details = {"name": "John Doe", "age": 25, "mobile": "123456789", "gender": "male"}
 
 print(details["name"])
 

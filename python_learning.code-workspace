@@ -5,6 +5,10 @@
     }
   ],
   "settings": {
+    "terminal.integrated.env.linux": {
+      "VSCODE_INTEGRATED_TERMINAL": "true",
+      "PYTHONPATH": "${workspaceFolder}:${env:PYTHONPATH}"
+    },
     "terminal.integrated.rendererType": "dom",
     "git.autorefresh": true,
     "markdownlint.ignore": ["**/*.md.html"],
