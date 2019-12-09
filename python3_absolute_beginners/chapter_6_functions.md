@@ -115,14 +115,6 @@ def my_function(param):
 print(my_function.__doc__)
 ```
 
-## Variable Scope
-
-* Symbol table to track names used in the program. `vars()` built-in can help dump the values as dictionary.
-* Variables created in main program's symbol table known as **global variables**. `globals()` builtin to view them.
-* Variables created inside function stored in symbol table specific to that function.`locals()` builtin to view them.
-
-* All functions can access global variables. if local variables have same name as global variables, then the global variables cannot be used inside the function, known as **shadowed globals**
-
 ## Global statement
 
 If a function uses global variables, then we use **global** statement to declare the usage of those global variables.
@@ -144,6 +136,72 @@ def capitalize():
   print(vars())
 ```
 
+## Variable Scopes
+
+* Symbol table to track names used in the program. `vars()` built-in can help dump the values as dictionary.
+* Variables created in main program's symbol table known as **global variables**. `globals()` builtin to view them.
+* Variables created inside function stored in symbol table specific to that function.`locals()` builtin to view them.
+
+* All functions can access global variables. if local variables have same name as global variables, then the global variables cannot be used inside the function, known as **shadowed globals**
+
+* If not explicitly specified as `global`, variables defined inside functions act as local variables. Global and local variables
+
+```Python
+def simple_function1():
+    greeting = "Hi"
+    print(f"Greeting from simple_function1:{greeting}")
+
+greeting = "Hello"
+print(f"Initial Greeting: {greeting}")
+simple_function1()
+
+def simple_function2():
+    global greeting
+    # declare that we are referring to greeting global variable
+    greeting = "Hey"
+    print(f"Greeting from simple_function2:{greeting}")
+
+simple_function2()
+print(f"Final greeting :{greeting}")
+```
+
+## `globals() vs locals() vs vars()`
+
+* `locals()` - returns a dictionary of names declared in **current namespace**. If used inside a function namespace, returns dictionary with local variables defined at that point. Changes made to this dictionary does not reflect back to the namespace.  
+* `globals()` - returns a dictionary of names declared in **module namespace**.
+* `vars([obj])` - returns dictionary of current namespace or its argument. Without argument it is equivalent to `locals()`. The If passed an argument, `vars()` returns the `__dict__` attribute of the input object. Changes made to this dictionary are reflected in the namespace. Use `vars()` to get the object `__dict__`
+
+* `dir([obj])` - returns list of symbols(attributes and method) in current namespace or of passed object. `dir()` is same as `locals().keys()`
+
+```Python
+def simple_function1():
+    greeting = "Hi"
+    print(f"Greeting from simple_function1:{greeting}")
+    print(locals())
+    print(globals())
+
+simple_function1()
+
+def simple_function2():
+    global greeting
+    greeting = "Hey"
+    print(f"Greeting from simple_function2:{greeting}")
+    print(locals())
+    print(globals())
+
+simple_function2()
+
+class SimpleClass:
+    class_attr = "hello"
+    def __init__(self, arg):
+        self._inst_attr = arg
+
+vars(SimpleClass)
+print(SimpleClass.__dict__)
+vars(SimpleClass('Hello'))
+print(SimpleClass('Hello').__dict__)
+```
+
 ## Passing lists and dictionaries to functions
 
 * Integers, floats are passed by value to functions.
@@ -155,3 +213,5 @@ def capitalize():
 ## References
 
 * [Python3 for absolute beginners](https://www.amazon.in/Python-Absolute-Beginners-Tim-Hall/dp/1430216328)
+* [Global, Local and nonlocal Variables](https://www.python-course.eu/python3_global_vs_local_variables.php)
+* [globals vs locals vs dir](https://stackoverflow.com/questions/32003472/difference-between-locals-and-globals-and-dir-in-python)

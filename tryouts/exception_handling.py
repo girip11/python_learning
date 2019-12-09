@@ -79,6 +79,7 @@
 # sample.print_message("Hello")
 # print(sample.__dict__)
 
+
 class CallableObject:
     def __call__(self, message):
         print("message: {}".format(message))
