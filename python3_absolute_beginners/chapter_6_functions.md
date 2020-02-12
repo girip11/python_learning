@@ -56,6 +56,46 @@ random_number = get_random_number()
 random_number = get_random_number( max = 1000, min = 10)
 ```
 
+* Default values can be assigned to parameters from function calls.
+
+```Python
+def default_val():
+    print("default_val method called")
+    return [0]
+
+# l is assigned the output of the function default_val
+# The function is not called everytime to assign default value
+# the function is called only once, and the return value is used everytime
+# this parameter is missed in the function call
+def example(n, l = default_val()):
+    print(f"List ID: {id(l)}")
+    print(l)
+
+example(1)
+example(2)
+```
+
+* Objects can also be assigned to parameters.
+
+```Python
+# l is assigned a list. Everytime the parameter is missed
+# out in the function call, same object is used.
+def example(n, l = list()):
+    l.append(n)
+    # New list is not created on every function call
+    # This can be verified by looking at the id of the default parameter value
+    print(f"List ID: {id(l)}")
+    print(l)
+
+example(1)
+example(2)
+
+example(3, [])
+
+example(4)
+example(5)
+```
+
 ## Passing variable arguments to the function
 
 ```Python

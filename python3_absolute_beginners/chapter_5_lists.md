@@ -248,6 +248,13 @@ fruits = ["apple", "orange", "mango", "banana"]
 [fruit.upper() for fruit in fruits]
 ```
 
+* Multiple levels of `for` can follow one another
+
+```Python
+# Print all two tuples such that i+j != 5
+[(i, j) for i in range(0, 10) for j in range(0, 10) if (i + j != 5)]
+```
+
 ## Set
 
 All elements in a list are unique. Elements cannot be accessed through index in a set.
