@@ -326,6 +326,8 @@ for element in (1, 2, 3):
     print(element)
 
 # Iterating over dictionary
+# Note that starting with Python 3.7, dictionary iteration order
+# is guaranteed to be the same as the insertion order.
 for key in {'one':1, 'two':2}:
     print(key)
 
