@@ -1,5 +1,7 @@
 # Functional programming in python
 
+> Functional style **discourages functions with side effects** that modify internal state or make other changes that aren’t visible in the function’s return value. Functions that have no side effects at all are called **purely functional**. Avoiding side effects means not using data structures that get updated as a program runs; every function’s output must only depend on its input.
+
 * **Pure functions** - accepts input and returns output without modifying the state of the system.
 * **Immutability** - cannot change the object's state once it is created. Ex: String and tuple in python are immutable.
 * **Higher order functions** - Functions that can accept another function as input parameter and return a function as output. For instance, `map` and `filter` are examples of higher order functions.
@@ -175,6 +177,13 @@ from itertools import starmap
 # starmap returns an iterator
 for i in starmap(add, zip(range(1, 10), range(11, 20))):
     print(i)
+```
+
+* `itertools.zip_longest(iter1, iter2, ... , [fillvalue=None])` - zips all the iterable elements in to n-tuple till the longest iterable is exhausted unlike the builtin zip which stops with the smallest iterable.
+
+```Python
+for k, v in itertools.zip_longest(range(1,10), range(15, 20), fillvalue=1):
+    print(k, v, sep=":")
 ```
 
 ## Selecting elements
