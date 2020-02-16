@@ -2,6 +2,8 @@
 
 * Chapterwise notes from the book **Learn to code in python3**
 
+**NOTE**: `import this` - in the python console prints the **Zen of Python**
+
 ## Chapter 1
 
 * Python is interpreted language.
@@ -50,6 +52,23 @@ print(type(eval(x))
 x = '12xf
 # Error
 print(type(eval(x)))
+```
+
+## Constants
+
+A constant is a type of variable that holds values, which cannot be changed. Constants are usually declared and assigned on a different module/file.
+
+```Python
+# constants.py
+PI = 3.14
+GRAVITY = 9.8
+```
+
+```Python
+#Inside main.py we import the constants
+import constants
+print(constants.PI)
+print(constants.GRAVITY)
 ```
 
 ## Chapter 3
@@ -191,6 +210,7 @@ def method_name(parameter_list):
 
 * Usually **main** method is written and treated as the driver to call in to other methods.
 * Documentation string(short as doc string) in python is a string enclosed between ''' or """ and present in the beginning of a file or beginning of a function.
+* The `None` keyword is used to define a null variable or an object. In Python, `None` keyword is an object, and it is a data type of the class `NoneType` . We can assign `None` to any variable, but you can not create other `NoneType` objects. **All variables that are assigned None point to the same object**.
 
 ## Chapter 8
 
@@ -306,6 +326,8 @@ for element in (1, 2, 3):
     print(element)
 
 # Iterating over dictionary
+# Note that starting with Python 3.7, dictionary iteration order
+# is guaranteed to be the same as the insertion order.
 for key in {'one':1, 'two':2}:
     print(key)
 

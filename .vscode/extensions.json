@@ -1,0 +1,16 @@
+{
+  // Reference: https://code.visualstudio.com/docs/editor/extension-gallery#_workspace-recommended-extensions
+  // Some of the extensions are from Brad Traversy
+  // youtube video link: [ Traversy Media: Setting Up VSCode For Python Programming
+  // ] https://www.youtube.com/watch?v=W--_EOzdTHk
+  "recommendations": [
+    "ms-python.python",
+    "almenon.arepl",
+    // Kite extension also requires a desktop app installed
+    // from https://kite.com/linux/
+    "kiteco.kite",
+    "njpwerner.autodocstring",
+    "tushortz.python-extended-snippets",
+    "littlefoxteam.vscode-python-test-adapter"
+  ]
+}

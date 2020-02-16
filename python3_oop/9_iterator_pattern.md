@@ -1,26 +1,18 @@
-# The iterator pattern
-
-## Iterator Object
-
-Iterator - object which contains `next()` and `done()` methods.
+# The **iterator** pattern
 
 ## Iterators in Python
 
-* the object implements the special method `__next__()`
+* An object (aka container object in the below context) is called **iterable** if you can **get an iterator** for it.
 
-* `next(iterator)` is usd to get the next object in the sequence.
+* Container object should implement `__iter__()` method. `iter(container_object)` returns the iterator object.
 
-## Iterator Protocol
+* Iterator is an object in python that has both `__iter__()` and `__next__()` special methods implemented.
 
-* Iterator abstract base class in module `collections.abc` defines the iterator protocol.
+* `next(iterator)` - should return the next object in the sequence.If there are no further items, raise the `StopIteration` exception.
 
-* Class with `__iter__` is iterable and returns an Iterator instance (Iterable interface).
+**NOTE**: Once an iterator’s `__next__()` method raises `StopIteration`, it must continue to do so on subsequent calls. **Implementations that do not obey this property are deemed broken**.
 
-* `iter(iterable)` usually returns the iterator object.
-
-* Iterable - object with items that can be looped over, iterator - specific location on the iterable.
-
-* When the items are completed, iterator raises `StopIteration()`
+* [Iterator Protocol](https://docs.python.org/3/library/stdtypes.html#iterator.__next__). Iterator abstract base class in module `collections.abc` defines the iterator protocol.
 
 ```Python
 # iterating on an iterable using for loop
@@ -33,7 +25,7 @@ for item in iterable:
   print(item)
 ```
 
-## itertools
+## `itertools` module
 
 This module contains helpful functions for operating on iterables.
 
@@ -58,7 +50,7 @@ Comprehensions - concise, highly optimized for creating list, set or dict from a
 
 ### List comprehensions
 
- List comprehensions faster compared to looping over the list.
+ List comprehensions **faster compared to looping over the list**.
 
 ```Python
 # map a list of strings to list of integers containing their length
@@ -87,11 +79,10 @@ output = {entry: len(entry) for entry in input}
 
 ## Generator expressions
 
-> Generators are iterators that you can iterate over only once. Generators donot store all the values in memory and generate the values on the fly. -[Stackoverflow Yield usage](https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do)
+> Generators are iterators that you can iterate over **only once**. Generators donot store all the values in memory and generate the values on the fly. -[Stackoverflow Yield usage](https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do)
+> List comprehensions aren’t useful if you’re working with iterators that return an infinite stream or a very large amount of data. Generator expressions are preferable in these situations - [Python Functional programming](https://docs.python.org/3/howto/functional.html)
 
-Same syntax as comprehension, but `()` are unsed instead of `[]` or `{}`. In generator expressions, the final container is not created. Memory efficient.
-
-Generators returned by generator expressions can be iterated over only once.
+* Same syntax as comprehension, but `()` are used instead of `[]` or `{}`. In generator expressions, the final container **is not created**. **Memory efficient**.
 
 ```Python
 input = [1, 2, 4, 5, 6, 2, 9]
@@ -105,13 +96,84 @@ for item in gen_exp:
   print(item)
 ```
 
+* Generator expressions always have to be written inside parentheses, but the parentheses signalling a function call also count.
+
+```Python
+# generator expression returns an iterable that is passed to the max function
+max(i for i in random.sample(range(200), 25))
+```
+
 ## Generator and yield keyword
 
-Function with yield keyword is converted to generator object. On encountering the yield statement, function returns the value to the caller, but when `next()` is called on that function, function execution resumes from the line of code **after the yield statement**.
+> * Generators are a special class of functions that simplify the task of writing iterators. Regular functions compute a value and return it, but generators return an iterator that returns a stream of values.
+> * The big difference between yield and a return statement is that on reaching a yield the generator’s state of execution is suspended and local variables are preserved.
+> [- Python Functional programming](https://docs.python.org/3/howto/functional.html)
 
-> When the function with yield statement is called, the function doesnot run, instead returns a generator object -[Stackoverflow Yield usage](https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do)
+* Function with `yield` keyword when invoked returns a **generator object** that **follows the iterator protocol.**
 
-Wherever in Python, iterable is expected, generators work (duck typing).
+* Generators can be thought of as resumable functions. On encountering the `yield` statement, function returns the value to the caller, but when `next()` is called on that function, function execution resumes from the line of code **after the yield statement**.
+
+```Python
+def get_generator(n):
+    for i in range(n):
+        yield i
+
+# storing the results by unpacking
+a, b, c = get_generator(3)
+
+for i in get_generator(5):
+    print(i)
+
+gen = get_generator(4)
+print(next(gen))
+print(next(gen))
+print(next(gen))
+print(next(gen))
+```
+
+* Function execution pauses at the `yield` statement. Whenever `__next__` is called, generator function runs code placed following the yield statement till the **next yield statement**.
+
+* A generator function can have multiple yield calls.
+
+```Python
+def gen_func(n):
+    print("Hello")
+    for i in range(n):
+        print('Before yield')
+        yield i
+        print('After yield')
+
+    print("end")
+
+gn = gen_func(5)
+
+# Only when iterating over the generator object, the function execution
+# starts. For every iteration, the execution resumes after the statement
+# following the yield
+for i in gn:
+    print(f"gn: {i}")
+
+# output
+# Hello
+# Before yield
+# gn: 0
+# After yield
+# Before yield
+# gn: 1
+# After yield
+# Before yield
+# gn: 2
+# After yield
+# Before yield
+# gn: 3
+# After yield
+# Before yield
+# gn: 4
+# After yield
+# end
+```
+
+* Wherever in Python, iterable is expected, generators work (duck typing).
 
 ```Python
 def filter_values(input):
@@ -130,9 +192,7 @@ for value in filter_values(input):
   print(value)
 ```
 
-Function execution pauses at the yield statement. Whenever `__next__` is called, generator function runs code placed following the yield statement till the **next yield statement**.
-
-A generator function can have multiple yield calls.
+> * Inside a generator function, `return value` causes `StopIteration(value)` to be raised from the `__next__()` method. Once this happens, or the bottom of the function is reached, the procession of values ends and the generator cannot yield any further values
 
 ## Yield items from another iterable
 
@@ -147,7 +207,9 @@ def processLog(file):
 
 ## Coroutines
 
-Similar to generators, while generators cant have data passed to it, **using coroutines data can be passed to the generators.** (generators produce data, coroutines can consume data)
+* Coroutines can be entered, exited, and resumed at many different points.
+
+* Coroutines are similar to generators, while generators can't have data passed to it, **using coroutines data can be passed to the generators.** (generators produce data, coroutines can consume data)
 
 > The thing that is really confusing for many people is the order in which this happens:
 >
@@ -168,7 +230,7 @@ yield statement
 def counter():
   count = 0
   while True:
-    step = yield count
+    step = (yield count)
     if(step == None or (not isinstance(step, int))):
       break
     count += step
@@ -184,6 +246,8 @@ for n in range(1, 20):
 
 coroutine.send(None)
 ```
+
+> I recommend that you always put parentheses around a yield expression when you’re doing something with the returned value, as in the above example. The parentheses aren’t always necessary, but it’s easier to always add them instead of having to remember when they’re needed. - [Python Functional programming](https://docs.python.org/3/howto/functional.html)
 
 ## Closing coroutines and throwing exceptions
 

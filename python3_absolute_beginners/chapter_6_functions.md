@@ -56,6 +56,46 @@ random_number = get_random_number()
 random_number = get_random_number( max = 1000, min = 10)
 ```
 
+* Default values can be assigned to parameters from function calls.
+
+```Python
+def default_val():
+    print("default_val method called")
+    return [0]
+
+# l is assigned the output of the function default_val
+# The function is not called everytime to assign default value
+# the function is called only once, and the return value is used everytime
+# this parameter is missed in the function call
+def example(n, l = default_val()):
+    print(f"List ID: {id(l)}")
+    print(l)
+
+example(1)
+example(2)
+```
+
+* Objects can also be assigned to parameters.
+
+```Python
+# l is assigned a list. Everytime the parameter is missed
+# out in the function call, same object is used.
+def example(n, l = list()):
+    l.append(n)
+    # New list is not created on every function call
+    # This can be verified by looking at the id of the default parameter value
+    print(f"List ID: {id(l)}")
+    print(l)
+
+example(1)
+example(2)
+
+example(3, [])
+
+example(4)
+example(5)
+```
+
 ## Passing variable arguments to the function
 
 ```Python
@@ -207,6 +247,57 @@ print(SimpleClass('Hello').__dict__)
 * Integers, floats are passed by value to functions.
 * String, tuple are immutable themselves. so when passed to function as arguments, those values remain unchanged.
 * In case of mutable structures like lists, set and dictionaries, only the reference is passed. It is possible to modify these sequences from inside the function and cause side effects.
+
+## Nesting of functions
+
+* In python, a function can contain other function definitions within it.
+
+* [Non local variables](https://www.python-course.eu/python3_global_vs_local_variables.php) - variables defined in the outer function scope are non local variables to the nested function.
+
+```Python
+def search_record(record_type, email):
+
+    # Note the nested functions can access the variables of the outer
+    # function
+    def get_record():
+        # In this case the record_type and email are non local variables.
+        return {"record": record_type, "email": email}
+
+    return db.search(get_record())
+
+search_record('Student', 'john@example.com')
+```
+
+* Those functions are visible and invokable only from within the outer function unless the function returns the inner function as its return value.
+
+```Python
+def get_record_template_creator(record_type):
+
+    # This method can be thought of a closure since the
+    # state(value of the record_type) is fixed in the returned function
+    def create_record_template(name, email):
+        return {
+            'record':  record_type,
+            'name': name,
+            'email': email
+        }
+
+    # return the function that can create template
+    # for a particular record type
+    return create_record_template
+
+create_student_template = get_record_template_creator('Student')
+create_student_template('John', 'john@example.com')
+
+create_teacher_template = get_record_template_creator('Teacher')
+create_teacher_template('Jane Doe', 'jane@example.com')
+```
+
+## Python closures
+
+> * A Closure is a function object that remembers values in enclosing scopes even if they are not present in memory.
+> * A closure—unlike a plain function—allows the function to access those captured variables through the closure’s copies of their values or references, even when the function is invoked outside their scope.
+> [-Python closures GFG](https://www.geeksforgeeks.org/python-closures/)
 
 ---
 
