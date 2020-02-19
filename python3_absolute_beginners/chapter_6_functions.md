@@ -98,10 +98,19 @@ example(5)
 
 ## Passing variable arguments to the function
 
+> If the form `*identifier` is present, it is initialized to a **tuple** receiving any excess positional parameters, defaulting to the **empty tuple**. If the form `**identifier` is present, it is initialized to a **new ordered mapping(`dict`) receiving any excess keyword arguments, defaulting to a new empty mapping of the same type**. Parameters after `*` or `*identifier` are **keyword-only parameters** and may only be passed used keyword arguments. - [Function Definitions in python](https://docs.python.org/3/reference/compound_stmts.html#function-definitions)
+
+* Using `*args` and `**kwargs` to capture variable number of arguments
+
+**NOTE**: In a function call, positional arguments comes before keyword arguments. In a function definition, the convention is to place mandatory parameters followed by **parameters with default values**, `*args` and then `**kwargs`.
+
+**\*** and **\*\*** can be used in function calls. First these parameters are expanded as `tuple` and `dict` respectively and then passed to the function.
+
 ```Python
 # convention is to call the * parameter as args
 def print_values(*args):
-  print(args) # argsis a tuple here. verify using type(args)
+    # args is a tuple here. verify using type(args)
+    print(args)
 
 print_values("Apple", "Mango", "Orange", 1, 10.5)
 
@@ -110,9 +119,9 @@ print_values(*["Apple", "Mango", "Orange"])
 
 # convention is to call the ** parameter as kwargs
 def print_key_value_pairs(**kwargs):
-  # kwargs is a dict.
-  for key in kwargs:
-    print("Key: {0!s}, value: {1!s}".format(key, kwargs[key]))
+    # kwargs is a dict.
+    for key in kwargs:
+        print("Key: {0!s}, value: {1!s}".format(key, kwargs[key]))
 
 print_key_value_pairs(one = 1, two = 2, three = 3)
 
@@ -120,9 +129,23 @@ print_key_value_pairs(one = 1, two = 2, three = 3)
 print_key_value_pairs(**{"one": 1, "two": 2, "three": 3 })
 ```
 
-**NOTE**: In a function call, positional arguments comes before keyword arguments. In a function definition, the convention is to place mandatory parameters followed by parameters with default values, *args and then **kwargs.
+* Using `*` to enforce keyword arguments. Available from **Python 3 onwards**
 
-**\*** and **\*\*** can be used in function calls. First these parameters are expanded as tuple and dict respectively and then passed to the function.
+```Python
+# atleast 1 Keyword argument should follow *
+def simple_func(pos_arg, def_arg = None, *, kwarg1 = '',**kwargs):
+    print(f"pos_arg: {pos_arg}")
+    print(f"def_arg: {def_arg}")
+    print(f"kwarg1: {kwarg1}")
+    print(f"kwargs: {kwargs}")
+
+simple_func(10, name="John Doe", age = "25")
+
+# kwarg1 should be explicitly specified to assign a value
+simple_func(pos_arg = 10, kwarg1 = "Hello", name="John Doe", age = "25")
+
+simple_func(10, def_arg = "default arg" , kwarg1 = "Hello", name="John Doe", age = "25")
+```
 
 ## Docstring convention
 
@@ -298,6 +321,27 @@ create_teacher_template('Jane Doe', 'jane@example.com')
 > * A Closure is a function object that remembers values in enclosing scopes even if they are not present in memory.
 > * A closure—unlike a plain function—allows the function to access those captured variables through the closure’s copies of their values or references, even when the function is invoked outside their scope.
 > [-Python closures GFG](https://www.geeksforgeeks.org/python-closures/)
+
+```Python
+def get_url_creator(protocol):
+
+    # this function is an example of closure
+    # since the value of parameter protocol is carried on to
+    # this method's scope
+    # This nested function is called as **inner function**
+    def create_url(host, port):
+        return f"{protocol}://{host}:{port}"
+
+    return create_url
+
+url_creator = get_url_creator("http")
+
+# Notice the value of the outer function parameter *protocol*
+# is remembered by the returned function, even though the get_url_creator
+# is completed and out of scope
+print(url_creator("example.com", 8080))
+print(url_creator("mydomain.com", 8000))
+```
 
 ---
 
