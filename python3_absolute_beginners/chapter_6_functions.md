@@ -96,6 +96,35 @@ example(4)
 example(5)
 ```
 
+## Disabling keyword argument and enabling only positional argument
+
+* Parameters with **double underscore** prefixes in their name can only be passed as positional arguments. This is due to the name mangling done by the python interpreter on variables prefixed with **double underscores**.
+
+```Python
+def say_hello(__name):
+    print(f"Hello, {__name}")
+
+say_hello("Jane")
+
+# raises TypeError "got an unexpected keyword argument '__name'"
+say_hello(__name = "Jane")
+```
+
+* From python 3.8 onwards, we can force positional arguments using `/` marker. All paramerets to the **left** of the `/` marker are positional parameters only.
+
+```Python
+def greet(name, /, msg="Hey"):
+    print(f"{msg}, {name}")
+
+# Raises TypeError: greet() got some positional-only arguments
+# passed as keyword arguments: 'name'
+greet(name="John", msg = "Hello")
+
+# Works
+greet("John", msg="Hello")
+greet("John", "Hi")
+```
+
 ## Passing variable arguments to the function
 
 > If the form `*identifier` is present, it is initialized to a **tuple** receiving any excess positional parameters, defaulting to the **empty tuple**. If the form `**identifier` is present, it is initialized to a **new ordered mapping(`dict`) receiving any excess keyword arguments, defaulting to a new empty mapping of the same type**. Parameters after `*` or `*identifier` are **keyword-only parameters** and may only be passed used keyword arguments. - [Function Definitions in python](https://docs.python.org/3/reference/compound_stmts.html#function-definitions)
@@ -350,3 +379,4 @@ print(url_creator("mydomain.com", 8000))
 * [Python3 for absolute beginners](https://www.amazon.in/Python-Absolute-Beginners-Tim-Hall/dp/1430216328)
 * [Global, Local and nonlocal Variables](https://www.python-course.eu/python3_global_vs_local_variables.php)
 * [globals vs locals vs dir](https://stackoverflow.com/questions/32003472/difference-between-locals-and-globals-and-dir-in-python)
+* [Force positional arguments only](https://deepsource.io/blog/python-positional-only-arguments/)
