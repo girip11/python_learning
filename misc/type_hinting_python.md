@@ -1,4 +1,4 @@
-# Type hinting in python
+# Type hinting in python (From Python 3.6 onwards)
 
 * Use **Mypy** package and its corresponding extension in vscode.
 

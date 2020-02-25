@@ -498,6 +498,19 @@ print(f"Hello {name}!")
 # Any python expression can be placed inside {}
 print(f"Hello {name.upper()}!")
 print(f"Result of 5 * 2 is {5 * 2}!")
+
+# to print {} itself as part of the output, use **{{** **}}**
+foo = "Hello"
+
+# prints
+# {
+#     "foo": Hello
+# }
+print(f"""
+{{
+    "foo": {foo}
+}}
+    """)
 ```
 
 * Using `Template` from string module.

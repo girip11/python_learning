@@ -4,13 +4,15 @@ If you are completely new to programming, then may be start learning python from
 
 Familiar with atleast one object oriented programming language, then use the following references/books.
 
-Online resources
+## Online resources
 
 * I highly recommend [**Python Course**](https://www.python-course.eu/python3_history_and_philosophy.php)  
 or
 * [Python Course from dataflair](https://data-flair.training/blogs/python-tutorials-home/)
 
-Books
+* [python-textbok](https://python-textbok.readthedocs.io/en/1.0) or [MIT notes](https://www.cs.uct.ac.za/mit_notes/python/)
+
+## Books
 
 * [Python3 for Absolute beginners](https://www.amazon.in/Python-Absolute-Beginners-Tim-Hall/dp/1430216328)
 
