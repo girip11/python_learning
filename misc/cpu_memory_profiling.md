@@ -3,7 +3,6 @@
 * CPU - **timeit** library
 * Memory - [**Pympler**](https://github.com/pympler/pympler)
 
-
 ---
 
 ## References
