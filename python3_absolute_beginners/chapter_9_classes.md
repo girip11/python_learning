@@ -82,7 +82,7 @@ object id is an integer. Every object has unique id.
 
 `type(instance)` builtin returns the typeof the object.
 
-**NOTE**: **type** and **id** are used only for debugging purposes.
+**NOTE**: **type** and **id** are used only for debugging purposes. `type` can also be used for creating a class dynamically (metaprogramming)
 
 ## Namespaces
 

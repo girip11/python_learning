@@ -2,8 +2,6 @@
 
 ## Exercises
 
-* [OOP Exercises hub-courses](http://hub-courses.pages.pasteur.fr/python-solutions/Object_Oriented_Programming.html)
-
 * [Python exercises](https://www.w3resource.com/python-exercises/class-exercises/)
 
 ---

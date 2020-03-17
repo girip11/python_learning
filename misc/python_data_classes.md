@@ -92,3 +92,4 @@ Employee = make_dataclass("Employee", [("Name", str), ("Age", int)], frozen= Tru
 ## References
 
 * [The Ultimate Guide to Data Classes in Python 3.7](https://realpython.com/python-data-classes/)
+* [Dataclasses in Python](https://medium.com/mindorks/understanding-python-dataclasses-part-1-c3ccd4355c34)

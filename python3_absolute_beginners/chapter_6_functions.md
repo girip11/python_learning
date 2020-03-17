@@ -303,6 +303,20 @@ print(SimpleClass('Hello').__dict__)
 ## Nesting of functions
 
 * In python, a function can contain other function definitions within it.
+* The nested/inner functions **are not defined until the parent** function is called. Equivalent to local variable being alive only in the function scope.
+
+```Python
+def get_url(protocol, host, port):
+
+    # A new instance of this inner function is created every time,
+    # the get_url function is invoked
+    def format_url():
+        return f"{protocol}://{host}:{port}"
+
+    # New id is printed everytime this function is called
+    print(id(format_url))
+    return format_url()
+```
 
 * [Non local variables](https://www.python-course.eu/python3_global_vs_local_variables.php) - variables defined in the outer function scope are non local variables to the nested function.
 
@@ -312,6 +326,7 @@ def search_record(record_type, email):
     # Note the nested functions can access the variables of the outer
     # function
     def get_record():
+        print(locals())
         # In this case the record_type and email are non local variables.
         return {"record": record_type, "email": email}
 

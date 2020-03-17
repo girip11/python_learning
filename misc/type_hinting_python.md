@@ -6,6 +6,15 @@
 * Helpful for static type checking.
 * For better type hinting support use **python 3.8** and above
 
+* Type annotations can be accessed using the **`__annotations__`** attribute
+
+```Python
+def say_hello(name: str) -> str:
+    return f"Hello, {name}"
+
+print(say_hello.__annotations__)
+```
+
 ## Builtin simple types
 
 * `int`, `bool`, `float`, `str`, `bytes`
@@ -40,7 +49,65 @@ def random_enable():
 print(f"Enabled: {random_enable()}")
 ```
 
-## `typing` module
+* To specify a **variable-length tuple of homogeneous type**, use literal ellipsis, e.g. `Tuple[int, ...]`. A plain Tuple is equivalent to `Tuple[Any, ...]`.
+
+```Python
+from typing import Tuple
+
+coordinates: Tuple[int, ...]
+coordinates = tuple((1, 2))
+```
+
+**NOTE**: `None` as a type hint is a special case and is replaced by `type(None)`
+
+## typing alias
+
+* Type hints can be assigned to an alias and that alias can be used inplace of the types. Helps in simplying complex signatures.
+
+```Python
+from typing import Dict, List, Tuple
+
+# Vector is an alias of List containing strings
+Vector = List[str]
+
+def transform(names: Vector) -> Vector:
+    pass
+
+# Assume a map that contains house coordinates as the key and the
+# visited count as the value. Instead of writing Dict[Tuple[int, int], int]
+# using aliases we can make the signature more readable.
+HouseCoordinates = Tuple[int, int]
+VisitedHouses = Dict[HouseCoordinates, int]
+```
+
+## `NewType`
+
+* Helps declaring subtypes of a type.
+
+* This new type in runtime becomes a function that returns the passed value as it is to the caller. **Since this derived type is a function, we cannot create classes that inherit from this derived type**.
+
+```Python
+from typing import NewType, Tuple
+
+# Remember Coordinates is not an alias of Tuple[int, int]
+# Coordinates now becomes a subtype of Tuple[int, int]
+Coordinates = NewType('Coordinates', Tuple[int, int])
+
+# prints function
+print(type(Coordinates))
+
+# below will raise runtime error
+# since we cannot create class inheriting from function
+class HouseCoordinates(Coordinates):
+    pass
+
+# we can create subtype from Coordinates using NewType
+# this will define a function with name HospitalCoordinates in
+# that module scope
+HospitalCoordinates = NewType('HospitalCoordinates', Coordinates)
+```
+
+## Built-in collections from `typing` module
 
 ```Python
 from typing import List, Set, Dict, Tuple, Optional, Union
@@ -69,6 +136,8 @@ email_recipients: Union[str, List[str]]
 
 ## Functions
 
+### Simple functions
+
 * `None` is used as the return type for functions without return values
 
 ```Python
@@ -77,6 +146,8 @@ def say_hello(name: str) -> None:
 
 say_hello("John")
 ```
+
+### Functions using iterators
 
 * Function that returns an **iterator** uses `Iterator[type]`
 
@@ -102,6 +173,8 @@ def get_iterable(n) -> Iterator[int]:
 for i in get_iterable(10):
     print(i)
 ```
+
+### Generator functions
 
 * Function that return generator objects. `Generator[yield_type, send_type, return_type]` can be used as the return type of generator functions
 
@@ -133,6 +206,8 @@ for i in gen:
 #     print(e.value)
 ```
 
+### Functions accepting or returning functions (decorators)
+
 * `Callable[[param_type, ...], return_type]` is used in cases where a function can accept another function as argument, return a function or to annotate a variable storing a reference to the function object.
 
 ```Python
@@ -144,7 +219,9 @@ def f(num1: int, my_float: float = 3.5) -> float:
 x: Callable[[int, float], float] = f
 ```
 
-## `Any` type and varargs
+* Parameters can be skipped using **literal ellipsis**(`...`). Ex: `Callable[..., int]`. Helpful in functions accepting just `*args` and `**kwargs`
+
+### `Any` type and varargs
 
 * `Any` used in places where the return value belongs to dynamic type
 
@@ -158,6 +235,42 @@ def simple_func(*args: str, **kwargs: str) -> None:
 
 def simple_func_any(*args: Any, **kwargs: Any) -> None:
     pass
+```
+
+**NOTE**: Use `object` to indicate that a value could be **any type in a typesafe manner**. Use `Any` to indicate that a value is **dynamically typed**.
+
+## [Generics](https://docs.python.org/3/library/typing.html#user-defined-generic-types)
+
+* Parameterize generics using `TypeVar`.
+
+```Python
+from typing import Type, TypeVar
+
+# create a type parameter
+T = TypeVar('T')
+
+def deserialize(json: str, cls: Type[T]) -> T:
+    pass
+```
+
+* User defined class using generics can be created
+
+```Python
+from typing import Generic, TypeVar
+# create a type parameter
+T = TypeVar('T')
+
+# Below is equivalent to class Myclass[T] in C#
+# This makes T valid as a type within the class body.
+class Myclass(Generic[T]):
+    pass
+```
+
+* Generic constraints
+
+```Python
+# S can be of type S or int or str
+S = TypeVar('S', int, str)
 ```
 
 ## Duck typing and Collections
@@ -233,6 +346,32 @@ class SimpleClass:
 simple_class1: SimpleClass = SimpleClass("Jack")
 simple_classes: List[SimpleClass] = [simple_class1]
 ```
+
+* `typing.overload` - Decorator to mark the methods as overloaded methods
+Remember in python method overloading is not allowed. This decorator helps overcome that.
+
+```Python
+@overload
+def process(response: None) -> None:
+    pass
+
+@overload
+def process(response: int) -> Tuple[int, str]:
+    pass
+
+@overload
+def process(response: bytes) -> str:
+    pass
+
+def process(response):
+    <actual implementation>
+```
+
+## Forward references and casting
+
+* `typing.cast(type, value)` - to cast value to type. Used by static type checkers only. No runtime impact.
+
+* `List["SomeClass"]` and `List[ForwardRef("SomeClass")]` are same.
 
 ---
 
