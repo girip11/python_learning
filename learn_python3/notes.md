@@ -379,8 +379,10 @@ class ChildClass(ParentClass):
         # first invoke the base class constructor
         ParentClass.__init__(self, params)
         # Base class constructor can also be invoked like below
+        # This is the python 2.x way of calling super()
         super(ChildClass, self).__init__(params)
         # Even simplifying, base class constructor can be invoked as below
+        # this is the python 3.x way of calling super()
         super().__init__(params)
         # Child class constructor implementation follows
 ```
@@ -498,6 +500,19 @@ print(f"Hello {name}!")
 # Any python expression can be placed inside {}
 print(f"Hello {name.upper()}!")
 print(f"Result of 5 * 2 is {5 * 2}!")
+
+# to print {} itself as part of the output, use **{{** **}}**
+foo = "Hello"
+
+# prints
+# {
+#     "foo": Hello
+# }
+print(f"""
+{{
+    "foo": {foo}
+}}
+    """)
 ```
 
 * Using `Template` from string module.

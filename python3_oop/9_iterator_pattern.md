@@ -106,7 +106,7 @@ max(i for i in random.sample(range(200), 25))
 ## Generator and yield keyword
 
 > * Generators are a special class of functions that simplify the task of writing iterators. Regular functions compute a value and return it, but generators return an iterator that returns a stream of values.
-> * The big difference between yield and a return statement is that on reaching a yield the generator’s state of execution is suspended and local variables are preserved.
+> * The big difference between `yield` and a `return` statement is that on reaching a yield the generator’s state of execution is suspended and local variables are preserved.
 > [- Python Functional programming](https://docs.python.org/3/howto/functional.html)
 
 * Function with `yield` keyword when invoked returns a **generator object** that **follows the iterator protocol.**
