@@ -8,7 +8,6 @@
     "almenon.arepl",
     "njpwerner.autodocstring",
     "tushortz.python-extended-snippets",
-    "littlefoxteam.vscode-python-test-adapter",
-    "matangover.mypy"
+    "littlefoxteam.vscode-python-test-adapter"
   ]
 }
