@@ -26,21 +26,3 @@ Other useful resources
 
 * [Python Anti-patterns](https://docs.quantifiedcode.com/python-anti-patterns/)
 * [Python tricks: A buffet of awesome python features](https://www.amazon.in/dp/B0785Q7GSY/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1)
-
-
-## VSCode IDE setup
-
-### Mypy static type checking
-
-* After installing all the dev dependencies, for the **mypy** vscode extension to work, install the **mypyls** (MyPy Language server) in to the pipenv provided virtual environment.
-
-```bash
-pipenv shell
-pip install "https://github.com/matangover/mypyls/archive/master.zip#egg=mypyls[default-mypy]"
-```
-
-**NOTE**: If you update the mypy-vscode extension, you may also need to update the mypy language server separately. Do so by running the following command.
-
-```Bash
-pip install -U "https://github.com/matangover/mypyls/archive/master.zip#egg=mypyls[default-mypy]"
-```

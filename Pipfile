@@ -8,6 +8,8 @@ black = "*"
 pylint = "*"
 ipython = "*"
 mypy = "*"
+pydocstyle = "*"
+bandit = "*"
 pytest = "*"
 
 [packages]
