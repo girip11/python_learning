@@ -241,7 +241,7 @@ getattr(dyn, "name", "John")
 
 * Since **objects can maintain states**, mimicking function through objects help us retain the state across call (**functions with memory**).
 
-> When we have an object, a statement like this `object(*args, **kwargs)` is translated in Python to `object.__call__(*args, **kwargs)`
+> When we have an object, a statement like this `object(*args, **kwargs)` is translated in Python to `object.__call__(*args,**kwargs)`
 
 ```Python
 from collections import defaultdict
@@ -307,3 +307,9 @@ class GoodList(UserList):
 ```
 
 * `collections.UserString`, `collections.UserList`, `collections.UserDict` should be used for extending string, list and dict respectively.
+
+---
+
+## References
+
+* [Clean code in python by Mariano Anaya](https://www.oreilly.com/library/view/clean-code-in/9781788835831/)

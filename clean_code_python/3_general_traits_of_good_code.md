@@ -197,3 +197,9 @@ test_func(first="Hello", second="World")
 ## Orthogonality in software
 
 * Orthogonality - making the modules independent of each other. High cohesion. Easy to make changes without regressing other components/modules.
+
+---
+
+## References
+
+* [Clean code in python by Mariano Anaya](https://www.oreilly.com/library/view/clean-code-in/9781788835831/)

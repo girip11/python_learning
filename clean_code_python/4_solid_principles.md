@@ -61,3 +61,9 @@ parent class
 > It is often called **dependency injection**: because the dependency can be provided dynamically.
 
 * It is better to use abstract base classes to define the behavior rather than using duck typing.
+
+---
+
+## References
+
+* [Clean code in python by Mariano Anaya](https://www.oreilly.com/library/view/clean-code-in/9781788835831/)

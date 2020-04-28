@@ -67,3 +67,9 @@ class DecoratorClass:
 ## Decorators and Separation of concerns
 
 * For a decorator to be highly cohesive, it should follow single responsibility principle.
+
+---
+
+## References
+
+* [Clean code in python by Mariano Anaya](https://www.oreilly.com/library/view/clean-code-in/9781788835831/)
