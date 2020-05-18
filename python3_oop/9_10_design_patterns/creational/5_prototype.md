@@ -1,12 +1,12 @@
 # Prototype pattern
 
+> Prototypes are useful when object initialization is expensive, and you anticipate few variations on the initialization parameters. In this context, Prototype can avoid expensive "creation from scratch", and support cheap cloning of a pre-initialized prototype.
+
 * Using a prototypical instance, we create other instances instead of creating using `new`
 
 * In scenarios where the object creation is expensive, we can clone a prototype instance and customize few parameters based on our need.
 
-* In python we can use the **copy module**'s `copy` and `deepcopy` methods to shallow and deep clone objects respectively in many cases.
-
-* In cases where we need to clone the objects in a special way that cannot be done through the above mentioned methods in the copy module, we can implement this design pattern as per the below technique.
+* In python we can use the **copy module**'s `copy` and `deepcopy` methods to shallow and deep clone objects respectively in many cases. So in python implementing cloning functionality becomes easier.
 
 ## Implementation
 
@@ -24,7 +24,13 @@ Example implementation adhering to the above steps can be found [**here**](https
 
 ## Prototype pattern in python
 
+>The Prototype pattern isn’t necessary in a language powerful enough to support first-class functions and classes. - [Python patterns guide](https://python-patterns.guide/gang-of-four/prototype/)
 
+If the scenario is to populate the object(prototype object) with a set of defaults to the constructor, then to construct the prototype registry we can use any one of the following approaches
+
+* Dictionary of object name to tuple containing class name and parameters that need to be passed to the constructor.
+* Dictionary of object name to lambda expression to construct the prototype object
+* Dictionary of object name to value created using `functools.partial` that returns a callable with fixed arguments.
 
 ---
 

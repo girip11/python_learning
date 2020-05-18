@@ -165,6 +165,8 @@ for i in RandomRange():
     print(i)
 ```
 
+**NOTE**: [This article](https://python-patterns.guide/gang-of-four/iterator/#implementing-an-iterable-and-iterator) nicely explains the implementation of the container iterables and iterators.
+
 ## Iterable vs Sequence
 
 * Iterables(container iterables) are memory efficient but cpu intensive. To reach the nth element, we have to iterate n times.
