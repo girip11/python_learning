@@ -54,9 +54,12 @@ print(mylist[slice(None, 3)])
 ## Creating custom sequences
 
 * In python, when an object is accessed like `myobject[key]`, magic method `__getitem__` is invoked on that object.
+
 * Sequence in python should implement `__getitem__` and `__len__` methods.
 
 * Sequences can be used in the `for .. in` loop.
+
+* In the `__getitem__`, when the key is not found in the sequence, we need to raise `IndexError`. This error will be used by `for..in` loop as the terminating condition. No other exception is recognized as the terminating condition of the sequence iteration by the `for..in` loop.
 
 * Approaches to create custom sequences
   * Wrapper over sequences from standard library
@@ -64,6 +67,101 @@ print(mylist[slice(None, 3)])
   * Complete custom implementation
     * Slice should return an instance of the same type of the class
     * slice semantics should be preserved(excluding the last element)
+
+## Context Managers
+
+* Whenever we need to run a piece of code that has preconditions and postconditions to be run, we can use context managers to achieve this.
+
+* Context managers are often used for resource management like file, database connections etc.
+
+```Python
+with open('test.csv') as test_file:
+    print(test_file.read())
+```
+
+* Context managers contain `__enter__` and `__exit__` magic methods. Context managers are used in `with` statement in python.
+
+* The return value of the  `__enter__(self)` method can be captured in a variable using the `as` keyword. Capturing the return value in a variable is optional and only needed when we want to do some operations on the object returned.
+
+* It is a good practice to always return something from `__enter__`. When we don't have anything useful to return we can return the context manager object itself.
+
+* `__exit__(self, ex_type, ex_value, ex_traceback)` is the signature of the exit method. In case an exception was raised inside the context manager block, this method will be called with the details of the exception, so that we can handle in a custom fashion, but the exception will still be passed on to the code following the `with` statement block.
+
+* If we return `True` or any value that evaluates to `True` from `__exit__` method, the exception raised will be swallowed. **This is not considered a good practice**.
+
+### Using `contextlib.contextmanager`
+
+* When contextmanager decorator is applied to a function, the function should be a generator function.
+
+```Python
+from contextlib import contextmanager
+@contextmanager
+def some_generator(<arguments>):
+    <setup>
+    try:
+        yield <value>
+    finally:
+        <cleanup>
+
+with some_generator(<arguments>) as <variable>:
+    <body>
+```
+
+* When we just need a context manager function, without preserving many states, and completely isolated and independent from the rest of our classes, this is probably a good way to go.
+
+```Python
+import contextlib
+
+@contextlib.contextmanager
+def contextmgr():
+    print("This is where your precondition logic goes")
+    # Anything yielded can be captured using the "as"
+    yield "Say Hello"
+    print("This is where your postcondition logic goes")
+
+# msg contains "Say Hello"
+with contextmgr() as msg:
+    print(f"Message from context manager: {msg}")
+```
+
+### Using `contextlib.ContextDecorator`
+
+* Mixin approach where `contextlib.ContextDecorator` is the mixin base class.
+
+```Python
+import contextlib
+
+class ContextManager(contextlib.ContextDecorator):
+    def __enter__(self):
+        print("Execute precondition logic")
+
+    def __exit__(self, ex_type, ex_value, ex_traceback):
+        print("Execute postcondition logic")
+
+@ContextManager()
+def business_logic():
+    print("business logic here")
+
+# No with statement required. Calling the function is sufficient
+business_logic()
+```
+
+* Advantage is we can use the decorator on any function that needs the same logic. Highly reusable.
+
+* Drawback with this approach is that we cannot use the value returned by  the `__enter__` method as in `with contextmgr() as obj`.
+
+### Suppressing particular exceptions
+
+* This is one of the cases where returning `True` (any truthy value) from `__exit_` is exploited.
+
+* `contextlib.suppress` can accept a list of exceptions and can handle those gracefully. This is equivalent to handling with `try..except` but with concisely.
+
+```Python
+from contextlib import suppress
+
+with suppress(FileNotFoundError):
+    os.remove(somefile)
+```
 
 ## Underscores in python
 
@@ -140,7 +238,7 @@ for i in RandomRange():
 
 * To overcome this problem, an iterable object on calling `__iter__` method **constructs an iterator and returns it**. The iterable is referred to as the **container iterable**
 
-* Iterators can be implemented using generator functions.
+* Iterators can be implemented using generator functions as well as separate classes with their own `__iter__` and `__next__` methods.
 
 > In general, it is a good idea to work with container iterables when dealing with generators.
 
@@ -208,6 +306,8 @@ def mark_coordinate(grid, coord):
 ## Dynamic Attributes
 
 * When an attribute on an object is invoked using the dot notation `myobject.attribute`, first `__getattribute__` magic method is called on that object. If the attribute is missing from that object dictionary `__dict__`, then the `__getattribute__` will fail. Then as a fallback `__getattr__` is called.
+
+* `__getattr__` works for both fields and methods.
 
 * `__getattr__` - we can control the access to dynamic attributes.
 
