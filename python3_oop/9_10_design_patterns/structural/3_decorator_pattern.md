@@ -6,6 +6,10 @@ Decorator implements the same interface as the object that it is decorating, but
 
 The Decorator pattern is used to dynamically add a new feature to an object without changing its implementation. It differs from inheritance because the **new feature is added only to that particular object, not to the entire subclass**.
 
+* A decorator is always passed the delegatee (the object that the decorator enhances). So decorator always uses aggregation.
+
+* By chaining multiple decorators, we can add multiple responsibilities to a single object.
+
 ## Implementation model 1
 
 ![Decorator pattern](./decorator.png)
@@ -67,6 +71,8 @@ class ItalicWrapper(TextTag):
 * Decorator and Proxy have different purposes but similar structures. Both describe how to provide a level of indirection to another object, and the implementations keep a reference to the object to which they forward requests.
 
 **NOTE**: [This article](https://python-patterns.guide/gang-of-four/decorator-pattern/) discusses various approaches with which we can implement the decorator pattern in python.
+
+* [Proxy vs Decorator](https://stackoverflow.com/questions/18618779/differences-between-proxy-and-decorator-pattern)
 
 ---
 

@@ -10,6 +10,12 @@
 
 * Factory can be used to decide whether to instantiate actual object or the proxy object.
 
+* Proxy often restricts the client the access to the real subject.
+
+* Proxy pattern often uses composition.
+
+> Proxies vary in the degree to which they are implemented like a decorator. A protection proxy might be implemented exactly like a decorator. On the other hand, a remote proxy will not contain a direct reference to its real subject but only an indirect reference, such as "host ID and local address on host." A virtual proxy will start off with an indirect reference such as a file name but will eventually obtain and use a direct reference. - [GOF]
+
 ## Usecases
 
 * This pattern helps to **create resource intensive objects lazily** when the client first accesses them.
@@ -19,7 +25,8 @@
 
 ## Difference from other structural patterns
 
-> Adapter provides a different interface to its subject. Proxy provides the same interface. Decorator provides an enhanced interface.
+> Adapter provides a different interface to its subject. Proxy provides the same interface. Decorator provides an enhanced interface. Decorator informs and empowers its client, Proxy restricts and disempowers its client.
+> Although decorators can have similar implementations as proxies, decorators have a different purpose. A decorator adds one or more responsibilities to an object, whereas a proxy controls access to an object. - [GOF]
 
 ## Example
 

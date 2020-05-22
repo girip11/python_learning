@@ -12,7 +12,11 @@
 * In precondition value of the parameters are checked. **Type checks are not performed**. Type checking is better left to static type checking tools like mypy.
 * For gaining confidence on the postcondition, unit tests can be used.
 
-* As per PEP-316 programming by contract is **deferred**.
+* In this approach, if the preconditions are not met, client will not call the component.
+
+* Python does not have native support for design by contract. But we have third party libraries that can support this.
+
+* We can have `assert` statements to check preconditions and disable them in production by running the python interpreter with **-O** flag.
 
 ## Defensive programming
 
@@ -89,7 +93,7 @@ purpose. Cohesive components are highly reusable.
 
 * Inheritance can be used to define interfaces in the form of abstract base classes that can be overridden by the derived classes.
 
-* Inheritance is useful in defining the exception hierarchy.
+* Inheritance is useful in defining the **exception hierarchy**.
 
 ### Anti-patterns for inheritance
 
@@ -105,9 +109,38 @@ purpose. Cohesive components are highly reusable.
 print([cls.__name__ for cls in ConcreteClass.mro()])
 ```
 
+* Method resolution order is explained very well in this [article](http://www.srikanthtechnologies.com/blog/python/mro.aspx). The same article is stored in my [pocket library](https://app.getpocket.com/read/2723074421)
+
+> You also get the assurance that, in `__mro__`, no class is duplicated, and no class comes after its ancestors, save that classes that first enter at the same level of multiple inheritance are in the `__mro__` left to right.
+> Every attribute you get on a class's instance, not just methods, is conceptually looked up along the `__mro__`, so, if more than one class among the ancestors defines that name, this tells you where the attribute will be found -- in the first class in the `__mro__` that defines that name.
+> `mro` can be customized by a metaclass, is called once at class initialization, and the result is stored in `__mro__`
+>
+> [SO: What does “mro()” do?](https://stackoverflow.com/questions/2010692/what-does-mro-do)
+
 ## Mixins
 
+* Solving problem using single inheritance
+
+```Python
+class BaseTokenizer:
+    def __init__(self, str_token):
+        self.str_token = str_token
+    def __iter__(self):
+        yield from self.str_token.split("-")
+
+class UpperCaseTokenizer(BaseTokenizer):
+    def __iter__(self):
+        return map(str.upper, super().__iter__())
+
+# Here the tokenizer was changed to inherit from UpperCaseTokenizer
+# instead of the BaseTokenizer
+class Tokenizer(UpperCaseTokenizer):
+    pass
+```
+
 > A mixin is a base class that encapsulates some common behavior with the goal of reusing code. Typically, a mixin class is not useful on its own, and extending this class alone will certainly not work, because most of the time it depends on methods and properties that are defined in other classes.
+
+* Above solution can also be written using mixins exploiting the MRO.
 
 ```Python
 class BaseTokenizer:
@@ -122,6 +155,9 @@ class UpperIterableMixin:
 
 class Tokenizer(UpperIterableMixin, BaseTokenizer):
     pass
+
+# prints the method resolution order
+print(Tokenizer.mro())
 ```
 
 ## Arguments in functions and methods
@@ -129,6 +165,7 @@ class Tokenizer(UpperIterableMixin, BaseTokenizer):
 * Keyword and positional parameters
 * Parameters are always passed by value in Python.
 * Avoid mutating function parameters.
+* Refactor functions with large number of parameters. For a caller to know how to provide all the parameters of that function, makes the abstraction a weaker one and increases the coupling between the functions.
 
 ### Variable number of arguments
 
@@ -197,6 +234,12 @@ test_func(first="Hello", second="World")
 ## Orthogonality in software
 
 * Orthogonality - making the modules independent of each other. High cohesion. Easy to make changes without regressing other components/modules.
+
+## Structuring the code
+
+* In python a large module can be split in to a package containing many smaller modules, **without breaking any import statements**
+
+* All the things that were previously present in the large module can be added to the new package's `__init__.py` file, so the older import statements are still valid.
 
 ---
 
