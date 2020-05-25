@@ -36,6 +36,8 @@ If the scenario is to populate the object(prototype object) with a set of defaul
 
 ## References
 
+Read the following references in the same order as listed below to gain a better understanding of this pattern.
+
 * [Prototype pattern](https://sourcemaking.com/design_patterns/prototype)
 * [Prototype pattern example](https://github.com/faif/python-patterns/blob/master/patterns/creational/prototype.py)
 * [Prototype design pattern review in python](https://python-patterns.guide/gang-of-four/prototype/)

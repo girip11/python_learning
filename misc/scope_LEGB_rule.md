@@ -93,12 +93,13 @@ print(sys.__dict__.keys())
 ## Scope related builtin functions
 
 * Never uses any of these methods to update the value of the variables in any scope.
-* Think of the results returned by `globals()` and `locals()` as **deep copy** of the names in the current global/local namespace. These functions should only be used for **readonly** operations.
 
-  * `globals()` - returns names in current global scope
-  * `locals()` - names in the current local scope(ex: inside a function). When used in global scope it is same as `globals()`
-  * `dir()` - without argument, this method lists the names in the current scope. If an object is passed to this method, it lists the attributes on that object. Used for debugging purposes and interactive use.
-  * `vars()` - returns the `__dict__` attribute of the object or module or instance. `vars(sys) is sys.__dict__`. Without arguments `vars()` is same as `locals()` in local scope and same as `globals` in global scope. If you call `vars()` with an object that doesn’t have a .__dict__, then you’ll get a `TypeError`.__name__
+**NOTE:** These functions should only be used for **readonly** operations for most cases. Using `globals()["name"]="value"` will add a global variable called **name** to that module in runtime, but this will affect the readability, IDE intellisense features. This addition of global state in runtime will be visible to all other modules using this module, since module serves like a singleton object. Once imported, a module is added to `sys.modules`. Refer to [Examply snippet](../tryouts/globals_locals_test.py)
+
+* `globals()` - returns names in current global scope
+* `locals()` - names in the current local scope(ex: inside a function). When used in global scope it is same as `globals()`
+* `dir()` - without argument, this method lists the names in the current scope. If an object is passed to this method, it lists the attributes on that object. Used for debugging purposes and interactive use.
+* `vars()` - returns the `__dict__` attribute of the object or module or instance. `vars(sys) is sys.__dict__`. Without arguments `vars()` is same as `locals()` in local scope and same as `globals` in global scope. If you call `vars()` with an object that doesn’t have a .__dict__, then you’ll get a `TypeError`.__name__
 
 ---
 
