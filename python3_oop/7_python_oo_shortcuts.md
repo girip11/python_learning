@@ -123,13 +123,17 @@ func(**{"a": 1, "b": 2, "c": 3})
 
 ## Function as attributes
 
-useful in **monkey patching**. useful in fixing bug in 3rd party library functions(hacky).
+* Changing methods on a class using function objects is referred to as [**monkey patching**](http://blog.dscpl.com.au/p/decorators-and-monkey-patching.html). Monkey patching can be done to a single object or to the class itself.
+
+Useful in **monkey patching**. useful in fixing bug in 3rd party library functions(hacky).
 
 ```Python
 class Sample:
   def print_message(self, message):
     print("Inside: print_message, message:{}".format(message))
 
+# Notice that this message does not receive any self arguments
+# but can act as an instance method after monkey patching
 def fake_print_message(message):
   print("Inside: fake_print_message, message:{}".format(message))
 
@@ -137,14 +141,18 @@ sample = Sample()
 sample.print_message("Hello")
 print(sample.__dict__)
 
-# think of this like replacing the __dict__ of the object with key "print_message", updating its value to point to a different function object.
+# think of this like replacing the __dict__ of the object with key
+# "print_message", updating its value to point to a different function object.
+# This is an example of monkey patching the object.
 sample.print_message = fake_print_message
 sample.print_message("Hello")
 print(sample.__dict__)
 ```
 
-* can replace methods on an object
-* can replace method on a class. this will reflect on all instances of the object
+* Can replace methods on an object
+* Can replace method on a class. This will reflect on all instances of the object.
+
+**NOTE**: A function installed on a Python object instance **does not receive an automatic self argument** — instead, it sees only the arguments with which it is literally invoked.
 
 ## Callable objects
 

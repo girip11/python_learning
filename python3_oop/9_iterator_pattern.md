@@ -4,7 +4,7 @@
 
 * An object (aka container object in the below context) is called **iterable** if you can **get an iterator** for it.
 
-* Container object should implement `__iter__()` method. `iter(container_object)` returns the iterator object.
+* Container object should implement `__iter__()` method. `iter(container_object)` returns the iterator object. `iter()` method documentation can be found [here](https://docs.python.org/3/library/functions.html#iter)
 
 * Iterator is an object in python that has both `__iter__()` and `__next__()` special methods implemented.
 
@@ -263,3 +263,4 @@ In case of coroutines, caller knows to proceed to next iteration using `send()` 
 
 * [Python3 Object oriented programming by Dusty Phillips](https://www.amazon.in/dp/B005O9OFWQ/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1)
 * [Understanding Python's for statement](http://effbot.org/zone/python-for-statement.htm)
+* [Python iterator pattern review](https://python-patterns.guide/gang-of-four/iterator/)

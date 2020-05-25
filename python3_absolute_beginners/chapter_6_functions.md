@@ -387,6 +387,25 @@ print(url_creator("example.com", 8080))
 print(url_creator("mydomain.com", 8000))
 ```
 
+**NOTE**: Closures are late binding. This means the value of the variable in the enclosed scope is looked up and substituted only when the closure is called. This behavior is same for lambdas as well as functions
+
+```Python
+# In the enclosed scope of the lambda, the value of i is stored as 10
+# which is the for loop end condition
+multipliers = [lambda x: (i + 1) * x for i in range(10)]
+
+# This will print 20 for 10 times
+# because when the closure is called the value of i is 10
+for m in multipliers:
+    print(m(2))
+
+# Fixing the value of the variable
+multipliers = [lambda x, i=i: (i + 1) * x for i in range(10)]
+
+for m in multipliers:
+    print(m(2))
+```
+
 ---
 
 ## References

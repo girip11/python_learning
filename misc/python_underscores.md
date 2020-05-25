@@ -15,6 +15,36 @@
 * While importing modules using **wildcard import `*`**, single underscore prefixed variables and methods are not imported.
 * PEP8 recommendation is to **avoid using wildcard imports**.
 
+## Single leading underscore in class members
+
+* Members with single underscore prefix serve as protected members in inheritance scenarios.
+
+```Python
+class SExample:
+    _shared_state = {}
+    def __init__(self):
+        # self will lookup the method _protect on the
+        # class of the instance(self) first and then if its not
+        # found it will move up the hierarchy.
+        self._protect()
+        # This will also refer to the dictionary of the subclass
+        # Since self is an instance of the DExample.
+        print(self._shared_state)
+
+    def _protect(self):
+        print("From SExample protect")
+
+class DExample(SExample):
+    _shared_state = {"state": "Running"}
+    def __init__(self):
+        super().__init__()
+    def _protect(self):
+        print("From DExample protect")
+
+# prints From DExample protect
+d = DExample()
+```
+
 ## Single Trailing Underscore: `var_`
 
 * A single trailing underscore is used by convention to avoid naming conflicts with Python keywords.
@@ -53,6 +83,39 @@ print(child.__arg)
 
 print(child._Parent__arg)
 print(child._Child__arg)
+```
+
+* In inheritance scenarios, attributes with dunder prefixes can help define class exclusive members thereby avoiding conflicts.
+
+* Note from the below example, name of the class where the self statement is executed is used for unmangling, even though self can be an instance of the subclass.
+
+```Python
+class SExample:
+    __shared_state = {}
+    def __init__(self):
+        # here name unmangling will resolve the below call to
+        # _SExample__protect because self is present in the SExample class.
+        self.__protect()
+        # here name unmangling will resolve the below call to
+        # _SExample__shared_state
+        print(self.__shared_state)
+
+    def __protect(self):
+        print("From SExample protect")
+
+class DExample(SExample):
+    __shared_state = {"state": "Running"}
+    def __init__(self):
+        super().__init__()
+        # here name unmangling will resolve the below call to
+        # _DExample__protect
+        self.__protect()
+        # here name unmangling will resolve the below call to
+        # _DExample__shared_state
+        print(self.__shared_state)
+
+    def __protect(self):
+        print("From DExample protect")
 ```
 
 ## Double Leading and Trailing Underscore: `__var__`

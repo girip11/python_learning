@@ -175,7 +175,7 @@ Python has modules that consists of utility methods. Some of the useful python m
 * **math** contains methods to find log, sqrt, power, trigonometric functions etc
 * **random** contains methods like randint, randrange, seed, choice etc
 * **time** module contains important methods sleep, clock etc
-Synatx for importing methods inside modules
+Syntax for importing methods inside modules
 
 ```Python
 # Syntax to import specific methods only
