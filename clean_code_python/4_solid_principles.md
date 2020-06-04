@@ -46,7 +46,7 @@ parent class
 
 > ISP states that, when we define an interface that provides multiple methods, it is better to instead break it down into multiple ones, each one containing fewer methods (preferably just one), with a very specific and accurate scope. By separating interfaces into the smallest possible units, to favor code reusability, each class that wants to implement one of these interfaces will most likely be highly cohesive given that it has a quite definite behavior and set of responsibilities.
 
-* Keeping the interface as small as possible makes it highly cohesive.
+* Keeping the interface as small as possible makes the classes that implements it highly cohesive.
 
 * Interface segregation principle makes the class implementing the interface adhere to single responsibility principle, since the interface does not contain behaviors that are orthogonal.
 
@@ -54,13 +54,15 @@ parent class
 
 > The dependency inversion principle (DIP) proposes an interesting design principle by which we protect our code by making it independent of things that are fragile, volatile, or out of our control. The idea of inverting dependencies is that our code should not adapt to details or concrete implementations, but rather the other way around: we want to force whatever implementation or detail to adapt to our code via a sort of API
 
+* Suppose `object A` uses `object B`, then A depends on B. Due to this dependency, if B changes, A has to change to avoid breaking its functionality. But instead if A takes a dependency on an **interface**, now the responsibility is on B to adhere to that interface. This way we have inverted the dependency, such that its B's responsibility to provide the declared interface, so that A does not break.
+
 * Details should depend on abstractions.
 
 * Components should interact with interface rather than concrete implementation.
 
 > It is often called **dependency injection**: because the dependency can be provided dynamically.
 
-* It is better to use abstract base classes to define the behavior rather than using duck typing.
+* It is better in terms of readability to use abstract base classes to define the behavior rather than using duck typing.
 
 ---
 
