@@ -158,10 +158,10 @@ print(sys.modules)
 import tryouts.simple_package
 ```
 
-* If the module is not imported already, then the python interpreter dows the following to load the module.
+* If the module is not imported already, then the python interpreter does the following to load the module.
 
 > When a module named `spam` is imported, the interpreter first searches for a **built-in module** with that name. If not found, it then searches for a file named `spam.py` in a list of directories given by the variable `sys.path`
-> The variable sys.path is a list of strings that determines the interpreter’s search path for modules. `sys.path` is initialized from these locations:
+> The variable `sys.path` is a list of strings that determines the interpreter’s search path for modules. `sys.path` is initialized from these locations:
 >
 > * The directory containing the input script (or the current directory when no file is specified).
 > * PYTHONPATH (a list of directory names, with the same syntax as the shell variable PATH).
@@ -182,6 +182,8 @@ print(type(sys.path))
 # To list all the loaded modules
 print(sys.modules)
 ```
+
+> Built-in modules are written in C and integrated with the Python interpreter. Each built-in module contains resources for certain system-specific functionalities such as OS management, disk IO, etc. The standard library also contains many Python scripts (with the .py extension) containing useful utilities. - [Builtin module vs standard library modules](https://www.tutorialsteacher.com/python/python-builtin-modules)
 
 * Module compiled to byte code and saved in **.pyc** file to avoid recompilation. Bytecode is platform independent.
 

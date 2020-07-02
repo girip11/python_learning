@@ -6,7 +6,7 @@
 
 * When a package gets imported, **__init__.py** gets imported. **__init__.py** is a normal python file that can contain usual python constructs like class, conditional constructs etc.
 
-> When importing the package, Python searches through the directories on sys.path looking for the package subdirectory.
+> When importing the package, Python searches through the directories on `sys.path` looking for the package subdirectory.
 > Note that relative imports are based on the name of the current module.Since the name of the main module is always "__main__", modules intended for use as the main module of a Python application **must always use absolute imports**. - [Modules and Packages](https://docs.python.org/3/tutorial/modules.html)
 
 ## Importing packages and modules
@@ -69,11 +69,11 @@ __all__ = ["module1"]
 
 ### Absolute Imports
 
-* When the project's root folder is available in `PYTHONPATH`, absolute import contains the absolute path to the module from the project's root folder.
+* When the project's root folder is available in `PYTHONPATH`, absolute import contains the absolute path to the module starting from the project's root folder.
 
 * Absolute import usage is recommended.
 
-**NOTE**: Any python package inside the project's root folder can be found from the `PYTHONPATH`. So teh absolute import statement starts with direct child directories of the project's root directory(given the project root is in `PYTHONPATH`).
+**NOTE**: Any python package inside the project's root folder can be found from the `PYTHONPATH`. So the absolute import statement starts with direct child directories of the project's root directory(given the project root is in `PYTHONPATH`).
 
 ```Python
 # ProjectRoot/

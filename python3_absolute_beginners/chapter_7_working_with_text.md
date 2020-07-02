@@ -13,11 +13,11 @@ text.split(' ', 3)
 text.rsplit(' ', 2)
 
 # string.partition("separator") returns a tuple (head, separator, tail)
-text.partititon("a")
+text.partition("a")
 text.partition("no") # returns entire string in head, empty strings for separator and tail
 
-# partition in reverse direction
-text.rpartititon("a")
+# Looks for partitioning from the end of the string
+text.rpartition("a")
 ```
 
 ## Joining strings without concatentation
@@ -131,7 +131,7 @@ text.count("is")
 
 ## Pattern matching using regex
 
-available from **re** module.
+Available from **re** module. More elaborate notes on regex can be found [here](../misc/python_regex.md)
 
 * **.** - matches any single character except newline
 * **?** - matches zero or one  occurrence of preceding expression.
@@ -139,6 +139,8 @@ available from **re** module.
 * **+** - matches one or more occurrences of preceding expression.
 * **^** - match the start of the string
 * **$** - match the end of the string
+
+* Use raw strings for regex patters. `r"Hello"` is python raw string.
 
 ## Escaping regular expression pattern
 

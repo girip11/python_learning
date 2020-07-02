@@ -243,8 +243,11 @@ for e1, e2 in zip(list1, list2)
 
 Syntax: **[expression for var in list [for ... | if ...]]**
 
+**NOTE**: Scope of loop variable is within the list comprehension. The loop variables will not be available outside the list comprehension.
+
 ```Python
 fruits = ["apple", "orange", "mango", "banana"]
+# scope of fruit is within []
 [fruit.upper() for fruit in fruits]
 ```
 
@@ -335,6 +338,10 @@ details.clear()
 # sorting dictionary items
 sorted(details.items())
 ```
+
+### `defaultdict`
+
+TODO
 
 ---
 
