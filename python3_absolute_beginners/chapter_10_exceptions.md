@@ -33,11 +33,11 @@ except ZeroDivisionError as ex:
 
 ### Exception classes hierarchy
 
-object
-  BaseException - This is the base class of all Exception classes
-    Exception
-      ArithmeticException
-        ZeroDivisionError
+`object`
+  `BaseException` - This is the base class of all Exception classes
+    `Exception`
+      `ArithmeticException`
+        `ZeroDivisionError`
 
 ## Raising exceptions
 
@@ -75,7 +75,7 @@ Assume `ex` variable contains the exception.
 
 ## Catching exceptions
 
-Except handles first matching clause. So the most specific clause comes first followed by themost generic ones.
+Except handles first matching clause. **So the most specific clause comes first followed by the most generic ones**.
 
 ```Python
 try:

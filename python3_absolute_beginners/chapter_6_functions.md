@@ -110,7 +110,7 @@ say_hello("Jane")
 say_hello(__name = "Jane")
 ```
 
-* From python 3.8 onwards, we can force positional arguments using `/` marker. All paramerets to the **left** of the `/` marker are positional parameters only.
+* From python 3.8 onwards, we can force positional only arguments using `/` marker. All paramerets to the **left** of the `/` marker are positional parameters only.
 
 ```Python
 def greet(name, /, msg="Hey"):
@@ -158,7 +158,7 @@ print_key_value_pairs(one = 1, two = 2, three = 3)
 print_key_value_pairs(**{"one": 1, "two": 2, "three": 3 })
 ```
 
-* Using `*` to enforce keyword arguments. Available from **Python 3 onwards**
+* Using `*` to enforce keyword only arguments following `*`. Available from **Python 3 onwards**
 
 ```Python
 # atleast 1 Keyword argument should follow *
@@ -261,7 +261,7 @@ print(f"Final greeting :{greeting}")
 
 * `locals()` - returns a dictionary of names declared in **current namespace**. If used inside a function namespace, returns dictionary with local variables defined at that point. Changes made to this dictionary does not reflect back to the namespace.  
 * `globals()` - returns a dictionary of names declared in **module namespace**.
-* `vars([obj])` - returns dictionary of current namespace or its argument. Without argument it is equivalent to `locals()`. The If passed an argument, `vars()` returns the `__dict__` attribute of the input object. Changes made to this dictionary are reflected in the namespace. Use `vars()` to get the object `__dict__`
+* `vars([obj])` - returns dictionary of current namespace or its argument. Without argument it is equivalent to `locals()`. If passed an argument, `vars()` returns the `__dict__` attribute of the input object. Changes made to this dictionary are reflected in the namespace. Use `vars()` to get the object `__dict__`
 
 * `dir([obj])` - returns list of symbols(attributes and method) in current namespace or of passed object. `dir()` is same as `locals().keys()`
 
@@ -387,7 +387,7 @@ print(url_creator("example.com", 8080))
 print(url_creator("mydomain.com", 8000))
 ```
 
-**NOTE**: Closures are late binding. This means the value of the variable in the enclosed scope is looked up and substituted only when the closure is called. This behavior is same for lambdas as well as functions
+**NOTE**: **Closures are late binding**. This means the value of the variable in the enclosed scope is looked up and substituted only when the closure is called. This behavior is same for lambdas as well as functions
 
 ```Python
 # In the enclosed scope of the lambda, the value of i is stored as 10

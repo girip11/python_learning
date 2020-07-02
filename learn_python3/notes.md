@@ -296,7 +296,6 @@ list2 = [1, 2] * 2  # list becomes [1, 2, 1, 2]
 * lists are **mutable** data structures
 * comparing list with equality operator(==) compares each element in the list.
 * **is** operator checks if list1 is alias of list2, in other words if both the list variables point to the same list data structure in memory.
-* **list_copy** functions copies the contents of input list and creates and returns a new list
 * slicing the list `list[begin_index: end_index]`. Default begin_index is 0 and default end_index is length of the list to be sliced. Slices the array from begin index to (end index - 1).
 * slice assignment
 
@@ -515,7 +514,9 @@ print(f"""
     """)
 ```
 
-* Using `Template` from string module.
+* ![Number format table](./python_number_formatting.png)
+
+* Using `Template` from `string` module.
 
 ```Python
 from string import Template
@@ -534,3 +535,4 @@ print(template.substitute(name = name,age = age))
 * Learn to code in python3 by Richard L.Halterman
 * [Python3 documentation](https://docs.python.org/3/tutorial/classes.html)
 * [String interpolation](https://realpython.com/python-string-formatting/)
+* [String formatting in python](https://mkaz.blog/code/python-string-format-cookbook/)

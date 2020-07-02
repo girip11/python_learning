@@ -31,13 +31,15 @@ print(type(numbers)) # class 'map'
 print(list(numbers))
 ```
 
-* `map()` can be applied to multiple sequences. The sequences need not be of same length.
+* `map()` can be applied to multiple sequences. The sequences need not be of same length. In case of sequences of varying length, map will operate till the minimum length out of these sequences.
 
 ```Python
 seq1 = [ 1, 2, 3, 4 ]
 seq2 = [ 4, 3, 2]
 
 sum_list = map(lambda a, b: a + b, seq1, seq2)
+
+# outputs [5, 5, 5]
 print(list(sum_list))
 ```
 

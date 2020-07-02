@@ -181,16 +181,6 @@ print(str(child))
 print(repr(child))
 ```
 
-## Other useful magic methods for emulating containers (list, dictionary)
-
-* `object.__len__(self)`- returns length of the object as integer. used by the builtin `len()` method.
-* `object.__getitem__(self, key)`- should return value similar to output of `self[Key]`
-* `object.__setitem__(self, key, value)`- should set value when accessed like `self[Key]`
-* `object.__delitem__(self, key)`- similar to using with **del** statement.
-* `object.__iter__(self)` - iterating purpose
-* `object.__reversed__(self)` - invoked by `reversed()` builtin function.
-* `object.__contains__(self, item)` - contains operation.
-
 ## Properties
 
 `property([fget], [fset], [fdel], [doc])`
@@ -281,12 +271,23 @@ dir(earth)
 
 ## Customizing attribute access
 
+* These methods are invoked when an attribute is called on an object using the dot notation. `obj.my_attr` calls `__getattr__` on the object `obj` passing name of the attribute `my_attr` as the parameter.
+
 * `object.__getattr__(self, name)` - returns attribute value.
-* `object.__getattribute__(self, name)` - on accessing via attribute name. Not available in python 2 and below.
 * `object.__setattr__(self, name, value)` - on attribute assignment attempt
 * `object.__detattr__(self, name)` - on deleting the attribute.
 
 **NOTE**: understand with examples  on usage of attribute, property, magic method(__getattr__).
+
+## Other useful magic methods for emulating containers (list, dictionary)
+
+* `object.__len__(self)`- returns length of the object as integer. used by the builtin `len()` method.
+* `object.__getitem__(self, key)`- should return value similar to output of `self[Key]`
+* `object.__setitem__(self, key, value)`- should set value when accessed like `self[Key]`
+* `object.__delitem__(self, key)`- similar to using with **del** statement.
+* `object.__iter__(self)` - iterating purpose
+* `object.__reversed__(self)` - invoked by `reversed()` builtin function.
+* `object.__contains__(self, item)` - contains operation.
 
 ## Class Attributes
 
