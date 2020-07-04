@@ -5,6 +5,25 @@
     }
   ],
   "settings": {
+    "editor.renderWhitespace": "all",
+
+    "[markdown]": {
+      "editor.codeActionsOnSave": {
+        "source.fixAll.markdownlint": true
+      },
+      "editor.wordWrap": "wordWrapColumn",
+      "editor.wrappingIndent": "none"
+    },
+    "[python]": {
+      "editor.wordWrapColumn": 100
+    },
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 80,
+    "editor.detectIndentation": false,
+    "editor.fontSize": 16,
+
     "terminal.integrated.env.linux": {
       "VSCODE_INTEGRATED_TERMINAL": "true",
       "PYTHONPATH": "${workspaceFolder}:${env:PYTHONPATH}"
@@ -24,6 +43,7 @@
     "python.venvPath": "/home/girish/.local/share/virtualenvs",
     "python.pipenvPath": "/home/girish/.pyenv/shims/pipenv",
     "python.formatting.provider": "black",
+    "python.formatting.blackArgs": ["-l", "100"],
     "python.autoComplete.showAdvancedMembers": true,
     "python.linting.banditEnabled": true,
     "python.linting.pylintEnabled": true,
