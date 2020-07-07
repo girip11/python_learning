@@ -23,6 +23,8 @@ Concurrency and parallelism can be achieved in python using `threading`, `multip
 
 * Useful in running IO bound workloads. (Speeding it up involves overlapping the times spent waiting for these devices.)
 
+* If a task takes up too much CPU time, other tasks will starve. Event loop does not context switch rather it expects the task to release the CPU on its own (cooperative multitasking).
+
 ## Using multiprocessing
 
 * Multiprocessing in python is achieved by spawning multiple sub processes which can run on each CPU independently. Thus true parallelism is achieved using multiprocessing in python.
@@ -31,8 +33,11 @@ Concurrency and parallelism can be achieved in python using `threading`, `multip
 
 * Concurrency code snippets for reading file can be found in [concurrency snippets](./../../tryouts/concurrency/)
 
+> There’s a general rule of thumb in the Python community: “Use asyncio when you can, threading when you must.”
+
 ---
 
 ## References
 
 * [Python concurrency](https://realpython.com/python-concurrency/)
+* [Concurency snippets](https://github.com/realpython/materials/tree/master/concurrency-overview)
