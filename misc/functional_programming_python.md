@@ -300,6 +300,12 @@ print(reduce(add, range(1, 10), 1))
 print(reduce(add, [], 0))
 ```
 
+* `operator` module can be handy when using `reduce`.
+
+* Performance of `reduce` against other builtin functions like `sum`, `all` etc can be found [here](https://realpython.com/python-reduce-function/).
+
+> Use functools.reduce() if you really need it; however, 99 percent of the time an explicit for loop is more readable. -[What’s New In Python 3.0 guide](https://docs.python.org/3/whatsnew/3.0.html)
+
 ---
 
 ## Reference
