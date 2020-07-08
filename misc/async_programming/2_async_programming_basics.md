@@ -148,6 +148,43 @@ asyncio.run(async_driver())
 
 * To run event loop in multiple CPUs, [refer to this talk](https://youtu.be/0kXaLh8Fz3k?t=10m30s)
 
+## Asyncio alternative packages
+
+* [curio](https://github.com/dabeaz/curio)
+* [trio](https://github.com/python-trio/trio)
+
+## Top level asyncio functions
+
+* (Python 3.7+)`asyncio.create_task(coroutine)` - Schedule the execution of a coroutine object. `asyncio.run(main_coroutine)` triggers the execution.
+* (Python 3.6) `asyncio.ensure_future()` - behaves the same as `asyncio.create_task()`
+* `asyncio.Task.all_tasks()` - returns all the pending tasks.
+* `asyncio.gather(coroutines_or_futures)` - `gather()` is meant to put a **collection of coroutines(futures)**  into a single future. If you `await asyncio.gather()` on multiple tasks or coroutines, you’re waiting for all of them to be completed. The result of `gather()` will be a list of the results across the inputs.
+
+* `asyncio.as_completed()` - to get tasks as they are completed, in the order of completion.
+
+```Python
+import asyncio
+
+async def async_coroutine(id):
+    await asyncio.sleep(1)
+    print(f"Inside coroutine with id:{id}")
+    return id
+
+async def main():
+    task1 = asyncio.create_task(async_coroutine(1))
+    task2 = asyncio.create_task(async_coroutine(2))
+    print(futures)
+    # as_completed returns an iterator of coroutines.
+    # we will get the results in the order in which the coroutines complete
+    for async_task in asyncio.as_completed([task1, task2]):
+        result = await async_task
+        print(f"Task result: {result}")
+
+    print(all([task1.done(), task2.done()]))
+
+asyncio.run(main())
+```
+
 ---
 
 ## References

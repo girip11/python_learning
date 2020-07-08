@@ -10,9 +10,12 @@
 * [Python design patterns](https://python-patterns.guide/)
 * [Python clean architecture](https://www.youtube.com/watch?v=DJtef410XaM)
 * [Python Conference talk on practices by Brandon Rhodes](https://www.youtube.com/watch?v=S0No2zSJmks). [Slides](https://rhodesmill.org/brandon/slides/2019-11-codedive/)
-* [Your Guide to the CPython Source Code](https://realpython.com/cpython-source-code-guide/)
 
 ## Monkey patching
 
 * [Monkey patching](https://www.youtube.com/watch?v=GCZmGgtWi3M)
 * [Decorators and monkey patching](http://blog.dscpl.com.au/p/decorators-and-monkey-patching.html)
+
+* [Python socket programming](https://realpython.com/python-sockets/)
+* [Your Guide to the CPython Source Code](https://realpython.com/cpython-source-code-guide/)
+* [John Reese - Thinking Outside the GIL with AsyncIO and Multiprocessing - PyCon 2018](https://www.youtube.com/watch?v=0kXaLh8Fz3k)
