@@ -10,6 +10,7 @@
 * [Python design patterns](https://python-patterns.guide/)
 * [Python clean architecture](https://www.youtube.com/watch?v=DJtef410XaM)
 * [Python Conference talk on practices by Brandon Rhodes](https://www.youtube.com/watch?v=S0No2zSJmks). [Slides](https://rhodesmill.org/brandon/slides/2019-11-codedive/)
+* [Your Guide to the CPython Source Code](https://realpython.com/cpython-source-code-guide/)
 
 ## Monkey patching
 

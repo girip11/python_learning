@@ -33,15 +33,17 @@ print(fruit.fruits_list[0])
 
 ## Extending buitlin classes
 
-we can extend builtin classes like list, tuple etc
+we can extend builtin classes like list, tuple etc. When extending builtin classes `list`, `dict`, `str`, its recommended to use `UserList`, `UserDict`, `UserString` present inside `collections` module.
 
 ```Python
-class CustomList(list):
+from collections import UserList
+
+class CustomList(UserList):
   pass
 
-# help(isinstance) for help
 mylist = CustomList()
-print(isinstance(mylist, list))
+mylist.extend([1,2,3])
+print(mylist == [1,2,3]) # prints True
 ```
 
 ## Super function
@@ -88,13 +90,13 @@ Call `__init__` of parents from child using the syntax
 
 * `ParentClass.__init__(self, params...)`
 
-* Using the above explicit invocation causes **A's** method (for instance __init__) to be called twice.
+* Using the above explicit invocation causes **A's** method (for instance `__init__`) to be called twice.
 
 * `super()` function helps in such cases. this function calls the **next method in the hierarchy** (next method will be based on the inheritance order defined.)
 
-* `mro` attribute used for defining Method Resolution Order.
+* `mro` attribute used for defining **Method Resolution Order**.
 
-* `super()` function along with each **__init__** method which can **accept keyword arguments**, can make next method call in the hierarchy smooth.
+* `super()` function along with each `__init__` method which can **accept keyword arguments**, can make next method call in the hierarchy smooth.
 
 ## Polymorphism
 
@@ -120,7 +122,7 @@ class PDFDocumentStore:
     pass
 ```
 
-Duck typing -  causes even objects that don't inherit from a parent stiil be valid. this reduces relevance of inheritance, polymorphism.
+Duck typing -  causes even objects that don't inherit from a parent still be valid. This reduces relevance of inheritance, polymorphism.
 
 Duck typing requires to provide implementation to behavior(interface methods accessed) that is required. No need to implement other behaviors(complete interface methods).
 
