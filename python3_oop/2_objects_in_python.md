@@ -193,7 +193,9 @@ if __name__ == "__main__":
 
 ```
 
-Class can be defined inside a function, function can also be define inside another function. Those classes adn function won't be visible outside of the enclosing function.
+Class can be defined inside a function, function can also be define inside another function. Those classes and functions won't be visible outside of the enclosing function.
+
+* In case of nested function, a new instance of the nested function is created everytime, the enclosing function is called.
 
 ## Access control
 
@@ -220,7 +222,7 @@ print(secret._Secret__passwd)
 
 ```
 
-## pip, venv and 3rd part Python libraries
+## pip, venv and 3rd party Python libraries
 
 ```Bash
 # pip is the package manager

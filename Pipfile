@@ -4,15 +4,18 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+bandit = "*"
 black = "*"
-pylint = "*"
 ipython = "*"
 mypy = "*"
 pydocstyle = "*"
-bandit = "*"
+pylint = "*"
 pytest = "*"
 
 [packages]
+aiofiles = "*"
+aiohttp = "*"
+pycuda = "*"
 requests = "*"
 
 [requires]

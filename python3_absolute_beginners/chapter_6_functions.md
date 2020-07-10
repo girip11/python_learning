@@ -98,18 +98,6 @@ example(5)
 
 ## Disabling keyword argument and enabling only positional argument
 
-* Parameters with **double underscore** prefixes in their name can only be passed as positional arguments. This is due to the name mangling done by the python interpreter on variables prefixed with **double underscores**.
-
-```Python
-def say_hello(__name):
-    print(f"Hello, {__name}")
-
-say_hello("Jane")
-
-# raises TypeError "got an unexpected keyword argument '__name'"
-say_hello(__name = "Jane")
-```
-
 * From python 3.8 onwards, we can force positional only arguments using `/` marker. All paramerets to the **left** of the `/` marker are positional parameters only.
 
 ```Python
