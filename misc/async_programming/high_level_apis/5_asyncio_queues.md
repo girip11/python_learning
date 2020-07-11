@@ -20,3 +20,9 @@
 
 * `asyncio.PriorityQueue` - each entry is a tuple(priority, item). Get will always fetch the item of highest priority.
 * `asyncio.LifoQueue` - Last in first out. `get` will fetch the most recently added item from this queue.
+
+---
+
+## References
+
+* [Asyncio queues](https://docs.python.org/3/library/asyncio-queue.html)
