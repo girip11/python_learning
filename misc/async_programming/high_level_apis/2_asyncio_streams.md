@@ -21,9 +21,19 @@ Both the functions return a tuple (reader, writer)
 
 ## StreamReader and StreamWriter important methods
 
-* [StreamReader methods](https://docs.python.org/3/library/asyncio-stream.html#streamreader)
+* [StreamReader methods](https://docs.python.org/3/library/asyncio-stream.html#streamreader). Some important coroutine functions for reading are `read(n=-1)`, `readline()`, `readexactly(n)`, `readuntil(separator=b'\n')`
 
-* [StreamWriter methods](https://docs.python.org/3/library/asyncio-stream.html#streamwriter)
+* [StreamWriter methods](https://docs.python.org/3/library/asyncio-stream.html#streamwriter). Some important methods for writing are `write(date)` and `writelines(data)`. The pattern is to call the coroutine function  `drain()` after calling any of the write functions. Data to be written should be in either bytes or iterable of bytes.
+
+```Python
+# write, writelines,
+stream.write(data)
+await stream.drain()
+
+# closing the StreamWriter
+stream.close()
+await stream.wait_closed()
+```
 
 ---
 
