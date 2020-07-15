@@ -23,7 +23,7 @@ Below APIs return the `Process` object.
 
 * Child process exit code available from `returncode` and `pid` contains the child process id
 
-* `stdin(StreamWriter)`, `stdout(StreamReader)` and `stderr(StreamReader)` attributes are available to asynchronously read and write to and from the child process. This is used when the child process was created with `asyncio.subprocess.PIPE` as stdin, stdout and stderr.
+* `stdin [StreamWriter]`, `stdout [StreamReader]` and `stderr [StreamReader]` attributes are available to asynchronously read and write to and from the child process. This is used when the child process was created with `asyncio.subprocess.PIPE` as stdin, stdout and stderr.
 
 ```Python
 import asyncio

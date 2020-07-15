@@ -70,36 +70,56 @@ asyncio.run(concurrent_main())
 
 * Creating an async task `asyncio.create_task(coroutine_obj)` and awaiting on that task from a coroutine. **Executing coroutines via tasks makes the coroutines execute concurrently.**
 
-**NOTE**: `await task_obj` will not block the caller on that statement (task is scheduled to run in async), while `await coroutine_obj` will block the caller till the coroutine gets executed.
+* Calling a coroutine function returns a coroutine object. That coroutine object is not given to event loop automatically for it to be scheduled to run. **Awaiting on a coroutine object makes it schedulable by event loop.**
+
+* Creating a task out of a coroutine object, places the coroutine object in the event loop and is scheduled to run automatically when the caller coroutine enters awaiting state.
 
 ```Python
 import asyncio
 
-async def print_msg(task_id, msg):
+async def print_msg(task_id, msg, wait_time):
     print(f"Task-{task_id}: Entered print_msg")
-    await asyncio.sleep(1)
+    await asyncio.sleep(wait_time)
     print(f"Task-{task_id}:{msg}")
     print(f"Task-{task_id}: Exited print_msg")
 
 # main() returns a coroutine
 async def main():
-    task1 = asyncio.create_task(print_msg(1, "Hello world"))
-    task2 = asyncio.create_task(print_msg(2, "Foo bar"))
+    # Now event loop will have 2 coroutine objects ready to run as
+    # soon as this main coroutine gets blocked(await)
+    task1 = asyncio.create_task(print_msg(1, "Hello world", 3))
+    task2 = asyncio.create_task(print_msg(2, "Foo bar", 1))
 
-    # control is not blocked here.
-    # once the coroutine belonging to task1 enters wait state
-    # control returns to this coroutine and
-    # the next statement gets executed.
+    # control is not blocked after creating tasks
+    print("Still the control is with the main coroutine")
+    # lets print all the pending tasks in the event loop
+    # This should print 3 tasks task1, task2 and main()
+    print(f"{asyncio.all_tasks()}")
+
+    # now main() coroutine will relinquish CPU and next task1
+    # is in event loop
+    # Since task1 is waiting for 3 seconds and task2 is waiting for 1 second
+    # task2 completes before the task1.
+    # When the control reaches here, task1 and task2 would have been completed
     await task1
+    print("Task1 is completed")
     await task2
+    print("All tasks complete")
 
 # Output
+# Still the control is with the main coroutine
+# {<Task pending coro=<print_msg(),
+#  <Task pending coro=<print_msg(),
+#  <Task pending coro=<main() }
 # Task-1: Entered print_msg
 # Task-2: Entered print_msg
-# Task-1:Hello world
-# Task-1: Exited print_msg
 # Task-2:Foo bar
 # Task-2: Exited print_msg
+# Task-1:Hello world
+# Task-1: Exited print_msg
+# Task1 is completed
+# All tasks complete
+
 asyncio.run(main())
 ```
 
@@ -146,7 +166,7 @@ async def concurrent_main():
 
 ## Future
 
-> * A `Future` is a special low-level awaitable object that represents an eventual result of an asynchronous operation
+> * A `Future` is a **special low-level awaitable object** that represents an eventual result of an asynchronous operation
 > * When a Future object is awaited it means that the coroutine will wait until the Future is resolved in some other place.
 
 ```Python

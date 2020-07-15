@@ -45,6 +45,7 @@ async def main():
 
     # this await will make all waiters to be blocked
     await signal(event)
+    print("Event signalled")
     # Wait till all waiters get executed
     await asyncio.gather(*tasks)
 
