@@ -10,6 +10,8 @@
 
 ![Memento Pattern](./memento.png)
 
+* Restorating a object state to an earlier point in time(rollback) can be achieved using this pattern.
+
 ## Example
 
 * [Memento pattern example](https://github.com/faif/python-patterns/blob/master/patterns/behavioral/memento.py)
