@@ -4,10 +4,12 @@
 
 * The `__init__.py` files are required to make Python treat directories containing the file as **packages**.
 
-* When a package gets imported, **__init__.py** gets imported. **__init__.py** is a normal python file that can contain usual python constructs like class, conditional constructs etc.
+* When you import a package, it runs the `__init__.py` file inside the package directory. `__init__.py` is a normal python file that can contain usual python constructs like class, conditional constructs etc.
+
+* When you execute a package (e.g. `python -m my_package`) it executes the `__main__.py` file.
 
 > When importing the package, Python searches through the directories on `sys.path` looking for the package subdirectory.
-> Note that relative imports are based on the name of the current module.Since the name of the main module is always "__main__", modules intended for use as the main module of a Python application **must always use absolute imports**. - [Modules and Packages](https://docs.python.org/3/tutorial/modules.html)
+> Note that relative imports are based on the name of the current module.Since the name of the main module is always `__main__`, modules intended for use as the main module of a Python application **must always use absolute imports**. - [Modules and Packages](https://docs.python.org/3/tutorial/modules.html)
 
 ## Importing packages and modules
 
@@ -67,13 +69,20 @@ __all__ = ["module1"]
 
 ## Absolute vs Relative Imports in Python
 
+### `PYTHONPATH` environment variable
+
+> * When you start a Python interpreter, one of the things it creates automatically is a list that contains all of directories it will use to search for modules when importing. This list is available in a variable named sys.path.
+> * `PYTHONPATH` is related to sys.path very closely. `PYTHONPATH` is an environment variable that you set before running the Python interpreter. `PYTHONPATH`, if it exists, should contain directories that should be searched for modules when using import. If `PYTHONPATH` is set, Python will include the directories in sys.path for searching.
+> * When you call import in the Python interpreter searches through a set of directories for the name provided. The list of directories that it searches is stored in sys.path and can be modified during run-time. To modify the paths before starting Python, you can modify the `PYTHONPATH` environment variable.
+> * Empty `''` entry in `sys.path` means the current directory.
+>
+> -[`sys.path` and `PYTHONPATH`](https://www.devdungeon.com/content/python-import-syspath-and-pythonpath-tutorial)
+
 ### Absolute Imports
 
-* When the project's root folder is available in `PYTHONPATH`, absolute import contains the absolute path to the module starting from the project's root folder.
+* When the project's root folder is available in `sys.path`, absolute import contains the absolute path to the module starting from the root package inside the project's directory.
 
 * Absolute import usage is recommended.
-
-**NOTE**: Any python package inside the project's root folder can be found from the `PYTHONPATH`. So the absolute import statement starts with direct child directories of the project's root directory(given the project root is in `PYTHONPATH`).
 
 ```Python
 # ProjectRoot/

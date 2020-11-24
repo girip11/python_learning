@@ -265,3 +265,4 @@ python_version = "3.7"
 * [Pyenv installation](https://www.tecmint.com/pyenv-install-and-manage-multiple-python-versions-in-linux/)
 * [Medium: Pipenv](https://towardsdatascience.com/comparing-python-virtual-environment-tools-9a6543643a44)
 * [How to manage multiple Python versions and virtual environments](https://www.freecodecamp.org/news/manage-multiple-python-versions-and-virtual-environments-venv-pyenv-pyvenv-a29fb00c296f/)
+* [Python virtual environments dev-dungeon](https://www.devdungeon.com/content/python-virtual-environments-tutorial)
