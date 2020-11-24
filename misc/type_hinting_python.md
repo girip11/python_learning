@@ -206,7 +206,7 @@ for i in gen:
 #     print(e.value)
 ```
 
-### Functions accepting or returning functions (decorators)
+### Functions accepting or returning functions (Higher order functions)
 
 * `Callable[[param_type, ...], return_type]` is used in cases where a function can accept another function as argument, return a function or to annotate a variable storing a reference to the function object.
 
@@ -328,7 +328,7 @@ from typing import List, Optional, ClassVar
 
 class SimpleClass:
     # instance variables with default values
-    instance_id: Optional[str] = 0
+    instance_id: Optional[str] = None
 
     # class variables
     instance_count: ClassVar[int] = 0

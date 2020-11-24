@@ -6,7 +6,9 @@
 
 * Each module has its own private symbol table, and importing a module adds the names in the module to the importing module's global symbol table.
 
-* A module is executed the first time its imported
+* When you import a module it runs the entire file from top to bottom.
+
+* When you execute a module it runs the entire file from top-to-bottom and sets the `__name__` variable to the string `__main__`.
 
 ## Importing modules using `import` statement
 
@@ -186,6 +188,27 @@ print(sys.modules)
 > Built-in modules are written in C and integrated with the Python interpreter. Each built-in module contains resources for certain system-specific functionalities such as OS management, disk IO, etc. The standard library also contains many Python scripts (with the .py extension) containing useful utilities. - [Builtin module vs standard library modules](https://www.tutorialsteacher.com/python/python-builtin-modules)
 
 * Module compiled to byte code and saved in **.pyc** file to avoid recompilation. Bytecode is platform independent.
+
+## `site` module
+
+`site` module can be used to modify `sys.path`.
+
+```Python
+import sys
+import site
+
+# This appends /somedir to the sys.path
+site.addsitedir("/somedir")
+print(sys.path)
+```
+
+* `python -m sire` - invokes the site module to print the contents of `sys.path` by default.
+
+
+## `PYTHONHOME` environment variable
+
+> The `PYTHONHOME` environment variable is similar to `PYTHONPATH` except it should define where the standard libraries are. If `PYTHONHOME` is set, it will assume some default paths relative to the home, which can be supplemented with `PYTHONPATH`. This is particularly relevant if you embedded Python in to a C application and it is trying to determine the path of Python using the PYTHONHOME environment variable. - [PYTHONHOME](https://www.devdungeon.com/content/python-import-syspath-and-pythonpath-tutorial)
+
 
 ---
 
