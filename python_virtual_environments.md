@@ -4,6 +4,8 @@ Virtual environments: isolated independent environments that can have both a spe
 
 ## Installing multiple Python versions
 
+**NOTE**: It's always good to leave the system installed python (Ex- system python that comes in linux) as it is.
+
 For installing different python versions (for instance, python 2.7 and 3.6), use `pyenv` (think of it like rbenv in ruby).
 
 ```bash
@@ -74,7 +76,7 @@ cat .python-version
 
 * The first `.python-version` file found (if any) by searching each parent directory, until reaching the root of your filesystem.
 
-* The global version file. You can modify this file using the pyenv global command. If the global version file is not present, pyenv assumes you want to use the "system" Python. (In other words, whatever version would run if pyenv weren't in your PATH.)
+* The global version file. You can modify this file using the `pyenv global` command. If the global version file is not present, pyenv assumes you want to use the "system" Python. (In other words, whatever version would run if pyenv weren't in your `PATH`.)
 
 ## Virtual environment for Python version >=3.3
 
@@ -83,12 +85,13 @@ cat .python-version
 ```bash
 # python3 -m venv <virtual_env_dir>
 # convention is to use venv directory for virtual environments
-python3 -m venv venv
+python3 -m venv .venv
 
 # activate the venv
-source venv/bin/activate
+source .venv/bin/activate
 
-# after this any pip install command will be installed packages to venv directory
+# after this any pip install command will install the packages to site_packages
+# folder inside the .venv directory
 
 # deactivating
 deactivate
@@ -152,6 +155,14 @@ pyenv activate my-virtual-env
 pyenv deactivate
 
 ```
+
+---
+
+## Other virtual env tools
+
+* [Virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/)
+* [Poetry](https://python-poetry.org/)
+* [conda](https://docs.conda.io/en/latest/)
 
 ---
 
@@ -254,6 +265,11 @@ python_version = "3.7"
 
 * Use **pyenv** to install multiple python versions and set a particular python version for a project.
 * Use **pipenv** for managing application dependencies.
+
+## Poetry vs Pipenv
+
+* [Pipenv and Poetry: Benchmarks & Ergonomics I](https://johnfraney.ca/posts/2019/03/06/pipenv-poetry-benchmarks-ergonomics/)
+* [Pipenv and Poetry: Benchmarks & Ergonomics II](https://johnfraney.ca/posts/2019/11/19/pipenv-poetry-benchmarks-ergonomics-2/)
 
 ---
 
