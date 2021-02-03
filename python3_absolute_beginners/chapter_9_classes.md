@@ -277,6 +277,8 @@ dir(earth)
 * `object.__setattr__(self, name, value)` - on attribute assignment attempt
 * `object.__detattr__(self, name)` - on deleting the attribute.
 
+These methods are invoked on the object when called using the builtins `getattr`, `setattr` and `delattr` respectively.
+
 **NOTE**: understand with examples  on usage of attribute, property, magic method(__getattr__).
 
 ## Other useful magic methods for emulating containers (list, dictionary)
