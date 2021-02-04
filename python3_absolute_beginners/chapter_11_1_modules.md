@@ -67,7 +67,7 @@ for arg in cmdline_args:
 * Not a recommended approach. Imports all names under a module or a package.
 * Can lead to name collision Always recommended to explicitly import what is required.
 
-**NOTE**: * Wildcard import statements can only be used at module level.
+**NOTE**: `*` Wildcard import statements can only be used at module level.
 
 ```Python
 from random import *
@@ -84,6 +84,9 @@ get_random_int(10, 100)
 ```
 
 ### Dynamically importing modules using `__import__`
+
+* Recommended way is to use `from importlib import import_module`.
+* `__import__` can also be used though its not recommended.
 
 ```Python
 #  __import__ helps in dynamic import during runtime.
@@ -109,6 +112,8 @@ random_gen = __import__(module_name)
 
 * Module variables/classes with leading underscore are treated internal to the module and are not imported to other modules when using wildcard import `from module import *`. But **explicit import is allowed**.
 
+**NOTE**: To sort the imports according to PEP, we can use tools like **isort**
+
 ## `__name__` variable
 
 Used when module is executed on its own like a python script.
@@ -130,7 +135,7 @@ if __name__ == "__main__"
 
 ## Reload module changes dynamically
 
-Using the python module **imp**. Module reloads are **additive**. For instance, add a method, rename the method, after the module reloads we will find both the methods available.
+Using the python module **importlib**. Module reloads are **additive**. For instance, add a method, rename the method, after the module reloads we will find both the methods available.
 
 ```Python
 import my_module
@@ -202,13 +207,11 @@ site.addsitedir("/somedir")
 print(sys.path)
 ```
 
-* `python -m sire` - invokes the site module to print the contents of `sys.path` by default.
-
+* `python -m site` - invokes the site module to print the contents of `sys.path` by default.
 
 ## `PYTHONHOME` environment variable
 
 > The `PYTHONHOME` environment variable is similar to `PYTHONPATH` except it should define where the standard libraries are. If `PYTHONHOME` is set, it will assume some default paths relative to the home, which can be supplemented with `PYTHONPATH`. This is particularly relevant if you embedded Python in to a C application and it is trying to determine the path of Python using the PYTHONHOME environment variable. - [PYTHONHOME](https://www.devdungeon.com/content/python-import-syspath-and-pythonpath-tutorial)
-
 
 ---
 

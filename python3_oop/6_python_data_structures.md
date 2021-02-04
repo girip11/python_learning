@@ -19,7 +19,7 @@ myObj.age = 20
 
 ## Tuples
 
-immutable. stores data.usually stores data of different types. but they affect **code readability** (difficult to interpret what each value in a tuple stands for)
+immutable. commonly used for storing data of different types. but they affect **code readability** (difficult to interpret what each value in a tuple stands for)
 
 ```Python
 # defining tuples
@@ -48,12 +48,24 @@ offers readability. immutable. groups read only data together.
 from collections import namedtuple
 
 # namedtuple syntax
-# namedtuple("TupleIdentifier", "Space separated attribute names")
-Employee = namedtuple("Employee", "name experience")
+# namedtuple("TupleIdentifier", "Space separated attribute names" or list)
+Employee = namedtuple("Employee", ["name", "experience"])
 employee = Employee("John Doe", experience=5)
 
 print("Name: {0!s}, Experience: {1!s}". format(employee.name, employee.experience))
 ```
+
+From python 3.6 onwards, we could use `NamedTuple` from `typing` module.
+
+```Python
+from typing import NamedTuple
+
+class Employee(NamedTuple):
+    name: str
+    experience: float
+```
+
+* Named tuple instances have `_asdict` to convert it to a dictionary and `_replace` method to clone the tuple with new value for one/more values.
 
 ## Dictionaries
 
@@ -74,7 +86,7 @@ print(fruits_count_dict["apple"])
 print(fruits_count_dict.get("mango", 0))
 
 # setdefault(key, value_to_set)
-print(fruits_count_dict.setdefault("mango", 5)))
+print(fruits_count_dict.setdefault("mango", 5))
 
 #  add/update using [] index syntax
 fruits_count_dict["apple"] = 7
@@ -113,18 +125,19 @@ print(fruits["apple"])
 # prints 0 returned by int()
 # also adds entry for orange to the dictionary
 print(fruits["orange"])
-
 ```
 
 ## Counter
 
-stores occurence of each key as its value in a collection.
+Stores count of each key as its value in a collection.
 
 ```Python
 from collections import Counter
 favorite_sports = ["cricket", "tennis", "cricket", "football", "tennis", "cricket"]
 counter = Counter(favorite_sports)
 
+print(counter.keys())
+print(counter.values())
 # most_common(n). top n
 print(counter.most_common(2)[0])
 ```
@@ -146,7 +159,7 @@ mutable. used for storing homogeneous entities. Some useful methods on lists are
 
 * Custom sort logic requires only **`__lt__`** (less than) method defined on the class. This method returns **True** if current instance is less than passed instance else **False**.
 
-* **__lt__** and **__eq__** along with **@total_ordering** class decorator, we get other method __gt__(&gt;), __ge__(&gt;=), __le__(&lt;=), __ne__(!=) implementations.
+* `__lt__` and `__eq__` along with `@total_ordering` class decorator, we get other method `__gt__`, `__ge__`, `__le__`, `__ne__` implementations.
 
 ```Python
 # case insensitive sort
@@ -164,7 +177,8 @@ my_tuple = [(1, "a"), (2, "c")]
 
 #  to use an item other than the first item(index 0) use itemgetter(index)
 my_tuple.sort(key =  itemgetter(1))
-
+# or simple we could use lambda
+my_tuple.sort(key = lambda i: i[1])
 ```
 
 ## Sets
@@ -223,7 +237,7 @@ print(my_queue.full())
 
 ### LIFO queues or Stack
 
-**list** is efficient compared to LifoQueue. use standard lists **`append()`** and **`pop()`** operations.
+**list** is efficient compared to `LifoQueue`. use standard lists **`append()`** and **`pop()`** operations.
 
 * LifoQueue provides  **concurrent access**
 * enforces **strictly stack interface**
@@ -245,7 +259,7 @@ if not stack.empty()):
 
 ### Priority Queues
 
-tuples stored in this queue. First element in tuple is the priority and the second is the data. implemented using **heap** data structure (heapq module).
+tuples stored in this queue. First element in tuple is the priority and the second is the data. implemented using **heap** data structure (`heapq` module).
 
 * `get()` - blocks if queue is empty
 * `put()` - blocks if queue is full

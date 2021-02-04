@@ -341,7 +341,21 @@ sorted(details.items())
 
 ### `defaultdict`
 
-TODO
+The default factory is called without arguments to produce
+a new value when a key is not present, in `__getitem__` only.
+
+```Python
+from collections import defaultdict
+
+# default_factory should be a callable that works with no parameters
+# if we have a callable with parameters then we can wrap that callable
+# in a lambda expression or using functools.partial
+empty_map = defaultdict(int)
+len(empty_map)
+# This should insert 0 against some_key and return the value 0
+empty_map["some_key"]
+len(empty_map) # should be 1
+```
 
 ---
 

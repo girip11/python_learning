@@ -12,7 +12,8 @@ class SimpleClass:
   """
     This is python docstring, used for documenting.
     Follows indentation. This statement follows the ":".
-    Docstrings enclosed within ''' or \"\"\", so that document can be formatted as multiline string
+    Docstrings enclosed within ''' or \"\"\", so that document 
+    can be formatted as multiline string
   """
   pass
 
@@ -44,7 +45,7 @@ Method requires one mandatory argument and conventionally named as **self**.
 
 Missing the **self** argument causes **TypeError** to be thrown by the interpreter.
 
-**NOTE**: Never name a method with leading and trailing double underscores
+**NOTE**: Never name a method with leading and trailing double underscores unless you are implementing documented python magic methods.
 
 ```Python
 class Point:

@@ -12,7 +12,7 @@ raise ValueError("Message")
 
 ## Handling exception
 
-**except, finally, else** can all be omitted. If **except** is used, the order is always **try**, **except**, **else** and **finally**. **try** clause can also be followed by just **finally** clause. **else** clause cannot be usd with just **try** clause
+**except, finally, else** can all be omitted. If **except** is used, the order is always **try**, **except**, **else** and **finally**. **try** clause can also be followed by just **finally** clause. **else** clause cannot be used with just **try** clause
 
 While handling exceptions with multiple except clauses, the first matching clause is always the one that gets executed. This could happen due to inheritance(is a relation, Subclass is a SuperClass). So the rule is handle more specific exception first followed by more general exception.
 
@@ -63,9 +63,9 @@ finally:
 
 All exceptions must inherit from either **BaseException** or one of its subclasses.
 
-`Exception`, `SystemExit` and `KeyboardInterrupt` all derive from `BaseException`
+`Exception`, `GeneratorExit`, `SystemExit` and `KeyboardInterrupt` all derive from `BaseException`. `BaseException.__subclasses__()` can be used to confirm the same.
 
-SystemExit - raised on invoking sys.exit. handling it can be used to perform actions before exiting the program.
+`SystemExit` - raised on invoking `sys.exit`. Handling it can be used to perform actions before exiting the program.
 
 **except** clause without any exceptions mentioned explicitly will catch all exceptions that are subclasses of **BaseException**.
 

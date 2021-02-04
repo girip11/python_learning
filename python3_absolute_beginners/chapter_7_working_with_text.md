@@ -133,12 +133,12 @@ text.count("is")
 
 Available from **re** module. More elaborate notes on regex can be found [here](../misc/python_regex.md)
 
-* **.** - matches any single character except newline
-* **?** - matches zero or one  occurrence of preceding expression.
-* **\*** - matches zero or more occurrences of preceding expression.
-* **+** - matches one or more occurrences of preceding expression.
-* **^** - match the start of the string
-* **$** - match the end of the string
+* `.` - matches any single character except newline
+* `?` - matches zero or one  occurrence of preceding expression.
+* `*` - matches zero or more occurrences of preceding expression.
+* `+` - matches one or more occurrences of preceding expression.
+* `^` - match the start of the string
+* `$` - match the end of the string
 
 * Use raw strings for regex patters. `r"Hello"` is python raw string.
 
