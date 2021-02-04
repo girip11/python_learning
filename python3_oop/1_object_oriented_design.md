@@ -16,7 +16,7 @@ Object - collection of data and its associated behaviors.
 
 * implement the design(implementation specification)
 
-## Objectes and classes
+## Objects and classes
 
 * class - blueprint for creating object. class of objects.
 
@@ -44,8 +44,8 @@ Objects names are nouns, while method names are verbs, attribute can be either a
 Composition - collection of objects together to create another object.
 Composition is aggregation and not vice versa. Aggregation is general form of composition.
 
-* Composition - when the outer object(composite) object controls the inner objects creation and destruction. Solid diamond in UML.
-* Aggregation - inner objects created and exist independently of the outer(composite) object.Hollow diamond in UML
+* Composition - when the outer object(composite) object controls the inner objects creation and destruction. represented by Solid diamond in UML.
+* Aggregation - inner objects created and exist independently of the outer(composite) object. represented by Hollow diamond in UML
 
 ## Inheritance
 
@@ -64,6 +64,7 @@ treat class differently depending on subclass implementation.
 
 inheriting from multiple parent classes.
 Usage discouraged. move towards composite design.
+Multiple inheritance is useful in case of mixins.
 
 ---
 
