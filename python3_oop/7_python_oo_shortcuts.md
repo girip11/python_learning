@@ -38,7 +38,18 @@ for i, player in enumerate(ranking_list):
   print("Rank: {}, Player:{}".format(i+1, player))
 ```
 
-Use `dir(__builtins__)`. Commonly used builtin functions
+All the builtins functions are available inside the `builtins` module. We could also use `dir(__builtins__)`. But to use the builtins we dont need to import this module explicitly.
+
+```Python
+import builtins
+
+# lists as the functions in this module
+dir(builtins)
+
+builtins.print("Hello world")
+```
+
+Commonly used builtin functions
 
 * `all()`, `any()`
 * `eval()`, `exec()`, `compile()`
@@ -102,7 +113,7 @@ def my_func2(**kwargs):
 
 ## Unpacking arguments
 
-prefix a list/tuple with **\*** to unpack. prefix a dictionary with **\*\*** to unpack.
+prefix a list/tuple with `*` to unpack. prefix a dictionary with `**` to unpack.
 
 ```Python
 def func(a, b, c):
@@ -154,6 +165,8 @@ print(sample.__dict__)
 
 **NOTE**: A function installed on a Python object instance **does not receive an automatic self argument** — instead, it sees only the arguments with which it is literally invoked.
 
+Monkey patching can be useful in testing.
+
 ## Callable objects
 
 object made callable - implement `__call__` method with required arguments
@@ -168,8 +181,9 @@ obj("This is a callable object behaving like a function")
 
 # instantiate and then call
 CallableObject()("Hello")
-
 ```
+
+**NOTE**: Callable objects can also be monkey patched on Class and its instances.
 
 ---
 
