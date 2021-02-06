@@ -34,7 +34,7 @@ Custom formatting in object by overridding the __format__ method.
 
 # String formatting using keyword argumets
 # Mixing unlabeled braces or indexed braces with keyword agruments is allowed. In that case positional arguments should precede keyword arguments
-"""Author is {boook_name} is {author_name}""".format(book_name="Python3 Object Oriented Programming", author_name="Dusty Phillips")
+"""Author is {book_name} is {author_name}""".format(book_name="Python3 Object Oriented Programming", author_name="Dusty Phillips")
 
 # using lists
 # consider it writing python code inside {} or []
@@ -72,6 +72,11 @@ import datetime
 
 `dir(bytes)` . **bytes** object is immutable.
 
+```Python
+text_in_binary = b"hello"
+print(bytes.decode(text_in_binary))
+```
+
 * `str.encode(encoding_scheme)` and `bytes.decode(encoding_scheme)`. In the absence of encoding scheme, uses `sys.getdefaultencoding()`
 
 ## Mutable bytes
@@ -89,15 +94,15 @@ Useful methods
 * `re.search`
 * `re.findall`
 
-* **^** - matches start of the string
-* **$** - end of the string
-* **.** -matches a single character
-* **?** - matches zero or one time of the preceding expression
-* **\*** - matches zero or more times of the preceding expression
-* **+** - matches one or more times of the preceding expression.
-* **\[ \]** - range
-* **()** - group expressions
-* **{n}** - applies n repetitions of the preceding pattern/expression.
+* `^` - matches start of the string
+* `$` - end of the string
+* `.` -matches a single character
+* `?` - matches zero or one time of the preceding expression
+* `*` - matches zero or more times of the preceding expression
+* `+` - matches one or more times of the preceding expression.
+* `[ ]` - range
+* `()` - group expressions
+* `{n}` - applies n repetitions of the preceding pattern/expression.
 
 ```Python
 import re as regex
@@ -120,7 +125,7 @@ Useful methods
 * `dump()` and `dumps()`
 * `load()` and `loads()`
 
-uses `__get_state__()` and `__set_state__`() method which inturn used `__dict__` for storing the objects state.
+uses `__get_state__()` and `__set_state__`() method which inturn uses `__dict__` for storing the objects state.
 
 ## serialization of objects
 
