@@ -99,7 +99,7 @@ print(sys.__dict__.keys())
 * `globals()` - returns names in current global scope
 * `locals()` - names in the current local scope(ex: inside a function). When used in global scope it is same as `globals()`
 * `dir()` - without argument, this method lists the names in the current scope. If an object is passed to this method, it lists the attributes on that object. Used for debugging purposes and interactive use.
-* `vars()` - returns the `__dict__` attribute of the object or module or instance. `vars(sys) is sys.__dict__`. Without arguments `vars()` is same as `locals()` in local scope and same as `globals` in global scope. If you call `vars()` with an object that doesn’t have a .__dict__, then you’ll get a `TypeError`.__name__
+* `vars()` - returns the `__dict__` attribute of the object or module or instance. `vars(sys) is sys.__dict__`. Without arguments `vars()` is same as `locals()` in local scope and same as `globals` in global scope. If you call `vars()` with an object that doesn’t have a `.__dict__`, then you’ll get a `TypeError .__name__`
 
 ---
 

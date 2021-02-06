@@ -81,7 +81,7 @@ print(f"Sum: {sum}")
 
 ## Creating new iterators
 
-* `itertools.cycle(start = 0, step = 1)` - iterator which returns infinite stream of numbers starting from start.
+* `itertools.count(start = 0, step = 1)` - iterator which returns infinite stream of numbers starting from start.
 
 ```Python
 from itertools import count

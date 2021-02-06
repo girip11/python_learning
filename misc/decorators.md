@@ -119,7 +119,7 @@ print(greet_world.__name__)
 greet_person('John')
 ```
 
-* `@functools.wrap` is used to preserve the information of the function which is about to be decorated.
+* `@functools.wraps` is used to preserve the information of the function which is about to be decorated.
 
 ```Python
 import functools
