@@ -58,6 +58,22 @@ print(next(gen))
 print(next(gen))
 ```
 
+## Recursive generators
+
+```Python
+def rec_gen(n):
+    if n < 0:
+        return None
+    yield n
+    yield from rec_gen(n-1)
+ 
+
+for i in rec_gen(5):
+    print(i)
+```
+
+**NOTE**: `yield from` operates on any iterable.
+
 ## Generator expressions
 
 * Generators are memory efficient compared to comprehensions. Generators generate next element as and when required, while comprehensions materialize before consumption.
@@ -93,4 +109,6 @@ print(sys.getsizeof(squared_genexp)) # 112
 
 * [How to Use Generators and yield in Python](https://realpython.com/introduction-to-python-generators/)
 * [Python generators](https://dbader.org/blog/python-generators)
+* [A Curious Course on Coroutines and Concurrency](http://dabeaz.com/coroutines/)
+* [what is the use of `yield from`](https://stackoverflow.com/questions/9708902/in-practice-what-are-the-main-uses-for-the-new-yield-from-syntax-in-python-3)
 * [Effective Python Coroutines](https://effectivepython.com/2015/03/10/consider-coroutines-to-run-many-functions-concurrently)
