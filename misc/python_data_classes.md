@@ -99,7 +99,7 @@ employee.age = 25
 * When creating frozen instances with default values for some fields, we need to define a custom `__init__` method, to accept the values passed via the `__init__`method. Otherwise we cannot override the default values.
 
 ```Python
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 @dataclass(init= False, frozen= True)
 class Employee:
@@ -109,6 +109,12 @@ class Employee:
     def __init__(self, name, age):
         super().__setattr__("name", name)
         super().__setattr__("age", age)
+
+# or we could use the dataclasses.field to set the default value
+@dataclass(frozen=True)
+class Employee:
+    name: str
+    age: int = field(default=30)
 
 john = Employee("John", 25)
 ```
@@ -133,7 +139,7 @@ print(jane)
 
 * Dataclasses can invoke `__post_init__` special method from the **generated** `__init__`.
 
-* If we have set `__init__` to false, then `__init__` will not be generated and hence the `__post_init__` method will not be automatically called.
+* If we have set `__init__` to `False`, then `__init__` will not be generated and hence the `__post_init__` method will not be automatically called.
 
 ```Python
 from dataclasses import dataclass, field, fields
@@ -143,7 +149,7 @@ class Person:
     first_name: str
     last_name: str
     # This will make the field not to be passed through
-    # the dunder init method
+    # the __init__ method
     full_name: str = field(init=False)
     age: int
 
@@ -250,7 +256,7 @@ class Employee:
     name: str
     age: int
 
-John = Employee('John', 25')
+John = Employee('John', 25)
 ```
 
 ---
