@@ -136,16 +136,23 @@ But through virtual subclassing, the objects that implement the `__getitem__` an
 
 * `ABCMeta` adds `__subclasshook__(subclass)` method to each of its classes.
 * `__subclasshook__()` should be implemented as a class method.
-* `issubclass()` builtin calls `__subclasscheck__()` which inturn calls the `__subclasshook__` method.
+* `issubclass()` builtin calls `ABCMeta.__subclasscheck__()`(if our base type uses ABCMeta as its metaclass) which inturn calls the `__subclasshook__` method.
+
+**NOTE**: `__subclasshook__` is available only on classes whose metaclass is `ABCMeta`.
 
 ```Python
 import abc
 
 class ParserBase(abc.ABC):
+    @classmethod
     def __subclasshook__(cls, C):
         # logic for checking if C subclass of cls
         pass
 ```
+
+## `__subclasshook__` vs `register`
+
+> You must be careful when you’re combining `.__subclasshook__()` with `.register()`, as `.__subclasshook__()` takes precedence over virtual subclass registration. To ensure that the registered virtual subclasses are taken into consideration, you must add `NotImplemented` to the `.__subclasshook__()` dunder method.
 
 ## Defining abstract properties, static methods and class methods
 
