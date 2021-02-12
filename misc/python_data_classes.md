@@ -99,7 +99,7 @@ employee.age = 25
 * When creating frozen instances with default values for some fields, we need to define a custom `__init__` method, to accept the values passed via the `__init__`method. Otherwise we cannot override the default values.
 
 ```Python
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 @dataclass(init= False, frozen= True)
 class Employee:
@@ -110,8 +110,16 @@ class Employee:
         super().__setattr__("name", name)
         super().__setattr__("age", age)
 
+# or we could use the dataclasses.field to set the default value
+@dataclass(frozen=True)
+class Employee:
+    name: str
+    age: int = field(default=30)
+
 john = Employee("John", 25)
 ```
+
+* If the parent dataclass is frozen, then the subclasses inheriting from that parent should also be frozen.
 
 ## Cloning from an existing dataclass object
 
@@ -133,7 +141,7 @@ print(jane)
 
 * Dataclasses can invoke `__post_init__` special method from the **generated** `__init__`.
 
-* If we have set `__init__` to false, then `__init__` will not be generated and hence the `__post_init__` method will not be automatically called.
+* If we have set `__init__` to `False`, then `__init__` will not be generated and hence the `__post_init__` method will not be automatically called.
 
 ```Python
 from dataclasses import dataclass, field, fields
@@ -143,7 +151,7 @@ class Person:
     first_name: str
     last_name: str
     # This will make the field not to be passed through
-    # the dunder init method
+    # the __init__ method
     full_name: str = field(init=False)
     age: int
 
@@ -235,6 +243,36 @@ c = C(i = 10, database=my_database)
 * During instantiation, parameters will follow the inheritance order, starting from the attributes of the base class to derived class.
 
 > If a field in a base class has a default value, then all new fields added in a subclass must have default values as well.
+
+* Above can be overcome if we use `field` to assign default values.
+
+```Python
+from dataclasses import *
+from typing import *
+
+@dataclass(frozen=True)
+class Person:
+    count: ClassVar[int] = 0
+    first_name: str
+    last_name: str
+    age: int
+    full_name: int = field(default="", init=False)
+    vehicle: InitVar[str]
+    owns_vehicle: bool = field(default=False, init=False)
+    def __post_init__(self, vehicle):
+        super().__setattr__("full_name",f"{self.first_name} {self.last_name}")
+        super().__setattr__("owns_vehicle",  vehicle is not None)
+
+
+@dataclass(frozen=True)
+class Student(Person):
+    course: str
+
+s = Student(first_name="John", last_name="Doe", age=20, vehicle="Honda Civic", course="computer")
+
+vars(s)
+```
+
 > Another thing to be aware of is how fields are ordered in a subclass. Starting with the base class, fields are ordered in the order in which they are first defined. If a field is redefined in a subclass, its order does not change.
 
 ## Optimization
@@ -250,7 +288,7 @@ class Employee:
     name: str
     age: int
 
-John = Employee('John', 25')
+John = Employee('John', 25)
 ```
 
 ---
