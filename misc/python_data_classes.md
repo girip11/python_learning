@@ -119,6 +119,8 @@ class Employee:
 john = Employee("John", 25)
 ```
 
+* If the parent dataclass is frozen, then the subclasses inheriting from that parent should also be frozen.
+
 ## Cloning from an existing dataclass object
 
 ```Python
@@ -241,6 +243,36 @@ c = C(i = 10, database=my_database)
 * During instantiation, parameters will follow the inheritance order, starting from the attributes of the base class to derived class.
 
 > If a field in a base class has a default value, then all new fields added in a subclass must have default values as well.
+
+* Above can be overcome if we use `field` to assign default values.
+
+```Python
+from dataclasses import *
+from typing import *
+
+@dataclass(frozen=True)
+class Person:
+    count: ClassVar[int] = 0
+    first_name: str
+    last_name: str
+    age: int
+    full_name: int = field(default="", init=False)
+    vehicle: InitVar[str]
+    owns_vehicle: bool = field(default=False, init=False)
+    def __post_init__(self, vehicle):
+        super().__setattr__("full_name",f"{self.first_name} {self.last_name}")
+        super().__setattr__("owns_vehicle",  vehicle is not None)
+
+
+@dataclass(frozen=True)
+class Student(Person):
+    course: str
+
+s = Student(first_name="John", last_name="Doe", age=20, vehicle="Honda Civic", course="computer")
+
+vars(s)
+```
+
 > Another thing to be aware of is how fields are ordered in a subclass. Starting with the base class, fields are ordered in the order in which they are first defined. If a field is redefined in a subclass, its order does not change.
 
 ## Optimization
