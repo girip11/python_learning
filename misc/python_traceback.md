@@ -10,7 +10,7 @@ def greet(someone):
 greet('Chad')
 ```
 
-![Python Name Error Traceback](name_error_traceback.png)
+![Python Name Error Traceback](./images/name_error_traceback.png)
 
 * Last line of the traceback contains the exception type and its message.
 * Next follows is the stack trace with most recently called code towards the bottom and least recent code at the top. This is incontrast to other programming languages where the stack trace is usually printed from top to bottom.
