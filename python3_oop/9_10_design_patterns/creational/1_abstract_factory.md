@@ -1,6 +1,6 @@
 # Abstract factory pattern
 
-* This pattern is very well explained in the [book]((https://www.amazon.in/dp/B005O9OFWQ/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1)) with a very good example. So refer to the book for illustration with an example.
+- This pattern is very well explained in the [book](<(https://www.amazon.in/dp/B005O9OFWQ/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1)>) with a very good example. So refer to the book for illustration with an example.
 
 **NOTE**: Use the materials in the references section to understand this pattern.
 
@@ -12,25 +12,17 @@ This design pattern abstracts the factory object that is going to be used for cr
 
 ## When to use this pattern
 
-* In scenarios where you have to choose an implementation based on a criteria like operating system, database backends, localizations etc.
+- In scenarios where you have to choose an implementation based on a criteria like operating system, database backends, localizations etc.
 
-* Abstract factory will abstract the creation of the object based on the settings in the application configuration or environment variables etc.
+- Abstract factory will abstract the creation of the object based on the settings in the application configuration or environment variables etc.
 
-* Client will never request for a particular concrete implementation.
+- Client will never request for a particular concrete implementation.
 
-## Example 1
+## Example
 
-* When developing an application using a web framework that provides support for multiple database backends like mariadb, postgresql, sqlite etc, the application code will call methods like insert, delete on database objects.
-
-* Application code will never mention that they need a mariadb database object. Instead they request a database object for interacting with the database. This interface is usually the abstract factory.
-
-* Abstract factory can returna an instance of the concrete class depending on the configuration or environment variable.
-
-## Example 2
-
-* Suppose you want to run a script to install a particular software on multiple operating systems.
-* We have written an installer class for each of windows, linux and unix based systems.
-* When the main code calls for installing software, depending on the value of `sys.platform` abstract factory can return the correct installer object
+- Suppose you want to create a socket object as well as file object on multiple operating systems.
+- Abstract factory in this case will define methods like `createSocket`, `createFile`, while the concrete factories will be created for each of the OS windows, linux and unix.
+- Based on the configuration or environment variable, appropriate concrete factory will be instantiated and that will be used by the client.
 
 ```Python
 # This snippet is just to give an idea on abstract factory pattern
@@ -86,7 +78,7 @@ Diagramatic representation of another example that closely resembles the above c
 
 ## Example 3
 
-* Refer to [Python3 Object oriented programming by Dusty Phillips](https://www.amazon.in/dp/B005O9OFWQ/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1) for a nice example on selection of date and currency formatters based on the locale setting.
+- Refer to [Python3 Object oriented programming by Dusty Phillips](https://www.amazon.in/dp/B005O9OFWQ/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1) for a nice example on selection of date and currency formatters based on the locale setting.
 
 ## Abstract factory pattern implementation in python
 
@@ -96,12 +88,12 @@ The article [Abstract factory pattern explained](https://python-patterns.guide/g
 
 The following restrictions in python will make abstract factory resemble very similar to that of Java or C#
 
-* Restriction-1: Callables cannot be passed as arguments
-* Restriction-2: Classes cannot be passed as arguments
-* Restriction-3: Factory objects have to be subclasses of a particular base type(Needed in statically typed languages).
+- Restriction-1: Callables cannot be passed as arguments
+- Restriction-2: Classes cannot be passed as arguments
+- Restriction-3: Factory objects have to be subclasses of a particular base type(Needed in statically typed languages).
 
-* Because of the above mentioned capabilities available in python, abstract factory implementation becomes very simplified. Factories need not use inheritance, but as long as they honor duck typing the amount of boilerplate code is reduced compared to Java or C#.
-* Example snippet in this [**article**](https://python-3-patterns-idioms-test.readthedocs.io/en/latest/Factory.html#abstract-factories) captures the abstract factory pattern implementation in java style and in python style.
+- Because of the above mentioned capabilities available in python, abstract factory implementation becomes very simplified. Factories need not use inheritance, but as long as they honor duck typing the amount of boilerplate code is reduced compared to Java or C#.
+- Example snippet in this [**article**](https://python-3-patterns-idioms-test.readthedocs.io/en/latest/Factory.html#abstract-factories) captures the abstract factory pattern implementation in java style and in python style.
 
 **CATCH:** If we are actively **using type hinting in python**, then the codebase will look similar to that of Java in terms of requiring an abstract base class and subclasses implementing those abstract behaviour.
 
@@ -109,8 +101,8 @@ The following restrictions in python will make abstract factory resemble very si
 
 ## References
 
-* [Python3 Object oriented programming by Dusty Phillips](https://www.amazon.in/dp/B005O9OFWQ/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1)
+- [Python3 Object oriented programming by Dusty Phillips](https://www.amazon.in/dp/B005O9OFWQ/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1)
 
-* [Abstract factory pattern](https://github.com/faif/python-patterns/blob/master/patterns/creational/abstract_factory.py)
+- [Abstract factory pattern](https://github.com/faif/python-patterns/blob/master/patterns/creational/abstract_factory.py)
 
-* [Abstract factory pattern explained](https://python-patterns.guide/gang-of-four/abstract-factory/)
+- [Abstract factory pattern explained](https://python-patterns.guide/gang-of-four/abstract-factory/)
