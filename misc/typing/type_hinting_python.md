@@ -60,6 +60,14 @@ coordinates = tuple((1, 2))
 
 **NOTE**: `None` as a type hint is a special case and is replaced by `type(None)`
 
+* `typing.Literal` - This type indicates the variable takes one of the specified literal values. Values passed to `Literal` should be of immutable type. This was introduced from python 3.8 onwards.
+
+```Python
+MODE = Literal["r", "rb", "w", "wb"]
+def open_helper(file: str, mode: MODE) -> str:
+    pass
+```
+
 ## typing alias
 
 * Type hints can be assigned to an alias and that alias can be used inplace of the types. Helps in simplying complex signatures.
@@ -96,7 +104,7 @@ Coordinates = NewType('Coordinates', Tuple[int, int])
 # prints function
 print(type(Coordinates))
 
-# below will raise runtime error
+# below will raise runtime ERROR
 # since we cannot create class inheriting from function
 class HouseCoordinates(Coordinates):
     pass
@@ -350,9 +358,11 @@ simple_classes: List[SimpleClass] = [simple_class1]
 * `typing.overload` - Decorator to mark the methods as overloaded methods
 Remember in python method overloading is not allowed. This decorator helps overcome that.
 
+> The @overload-decorated definitions are for the benefit of the type checker only, since they will be overwritten by the non-@overload-decorated definition, while the latter is used at runtime but should be ignored by a type checker. At runtime, calling a @overload-decorated function directly will raise `NotImplementedError` - **Python typing docs**
+
 ```Python
 @overload
-def process(response: None) -> None:
+def process(response: str) -> None:
     pass
 
 @overload
@@ -366,6 +376,12 @@ def process(response: bytes) -> str:
 def process(response):
     <actual implementation>
 ```
+
+* `typing.final` - decorator that can be used on classes or methods to indicate the type checker that the method cannot be overridden or the class cannot be subclassed.
+
+* `typing.type_check_only` - Decorator that makes a type available only during the type checking and unavailable during runtime.
+
+* `typing.TYPE_CHECKING` - A special constant that is assumed to be True by 3rd party static type checkers. It is False at runtime.
 
 ## Forward references and casting
 

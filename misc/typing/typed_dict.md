@@ -30,11 +30,11 @@ class Person(TypedDict):
     name: str
     age: int
 
-john: Movie = Movie(name="John", age = 25)
+john: Person = Person(name="John", age = 25)
 
-john: Movie = dict(name="John", age = 25)
+john: Person = dict(name="John", age = 25)
 
-john: Movie = { name: "John", age: 25}
+john: Person = { name: "John", age: 25}
 ```
 
 ## TypedDict vs Dataclasses
