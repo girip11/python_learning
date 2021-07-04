@@ -10,12 +10,13 @@
 
 ![Memento Pattern](./memento.png)
 
-- Restoring an object state to an earlier point in time(rollback) can be
+- Restoring an object state to an earlier point in time(rollback) can be achieved using this pattern.
 
 ## Implementation
 
-![Memento Pattern example](./memento_example.png)
-achieved using this pattern.
+![Memento Pattern simple implementation](./memento_implementation.png)
+
+![Memento Pattern strict implementation](./memento_strict_encapsulation.png)
 
 ## Example
 
@@ -26,3 +27,5 @@ achieved using this pattern.
 ## References
 
 - [Memento Design pattern](https://sourcemaking.com/design_patterns/memento)
+
+- [Memento Design pattern: Refactoring Guru](https://refactoring.guru/design-patterns/memento)
