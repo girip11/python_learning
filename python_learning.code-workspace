@@ -28,7 +28,6 @@
       "VSCODE_INTEGRATED_TERMINAL": "true",
       "PYTHONPATH": "${workspaceFolder}:${env:PYTHONPATH}"
     },
-    "terminal.integrated.rendererType": "dom",
     "git.autorefresh": true,
     "markdownlint.ignore": ["**/*.md.html"],
     "files.insertFinalNewline": true,
@@ -40,7 +39,7 @@
     "shellcheck.run": "onSave",
     "shellformat.flag": "-i 2 -ci -sr -bn",
     "python.languageServer": "Pylance",
-    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python3.8",
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
     "python.pipenvPath": "/home/girish/.pyenv/shims/pipenv",
     "python.formatting.provider": "black",
     "python.formatting.blackArgs": ["-l", "100"],

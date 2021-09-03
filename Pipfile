@@ -9,12 +9,12 @@ bandit = "*"
 black = "*"
 flake8 = "*"
 ipython = "*"
+ipython-memory-usage = "*"
 isort = "*"
 mypy = "*"
 pydocstyle = "*"
 pylint = "*"
 pytest = "*"
-ipython-memory-usage = "*"
 
 [packages]
 aiofiles = "*"
@@ -25,7 +25,7 @@ pycuda = "*"
 requests = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.9"
 
 [pipenv]
 allow_prereleases = true
