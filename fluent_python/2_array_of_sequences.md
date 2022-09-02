@@ -118,17 +118,39 @@ class SomeNamedTuple(NamedTuple):
 
 Multidimensional slicing is used in `numpy` package.
 
+```Python
+# this is how it works
+from collections.abc import Sequence
+
+class MySeq(Sequence):
+    def __getitem__(self, index):
+        print(index)
+        # implementation
+    def __len__(self) -> int:
+        return 0
+
+seq = MySeq()
+# this outputs (1,2)
+seq[1, 2]
+
+# this outputs (slice(1,2,None), slice(3,4,None))
+seq[1:2, 3:4]
+```
+
 > The built-in sequence types in Python are **one-dimensional**, so they support only one index or slice, and not a tuple of them.
 
 ### `Ellipsis` object
 
 - `...` alias to `Ellipsis` is the only instance of `ellipsis` class.
 
+- `Ellipsis` is a sentinel. `Ellipsis` and `ellipsis` are found under `builtins` module
+
 > NumPy uses `...` as a shortcut when slicing arrays of many dimensions; for example, if `x` is a fourdimensional array, `x[i, ...]` is a shortcut for `x[i, :, :, :,]`.
 
 ### Slice to update mutable sequences
 
 - Slices can be used to change the mutable sequences in place.
+- For these operations to work the following methods are required to be present `__setitem__` and `__delitem__`. If you are implementing a custom class, inherit from `collections.abc.MutableSequence`
 
 ```Python
 arr = [1, 2, 3, 4, 5]
@@ -177,7 +199,7 @@ dis("s[a] += b")
 ## `bisect` module
 
 - `bisect(haystack, needle)` returns index to insert needle in a haystack which is a sorted sequence. Does a binary search.
-- `insort` - searches a sorted sequences and inserts the needle
+- `insort` - searches a sorted sequence and inserts the needle
 
 ## `array` module
 
