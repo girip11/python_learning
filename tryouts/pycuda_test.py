@@ -1,4 +1,3 @@
-import pycuda
 import pycuda.driver as drv
 
 drv.init()
@@ -10,7 +9,7 @@ for i in range(drv.Device.count()):
     print("Device {}: {}".format(i, gpu_device.name()))
     compute_capability = float("%d.%d" % gpu_device.compute_capability())
     print("\t Compute Capability: {}".format(compute_capability))
-    print("\t Total Memory: {} megabytes".format(gpu_device.total_memory() // (1024 ** 2)))
+    print("\t Total Memory: {} megabytes".format(gpu_device.total_memory() // (1024**2)))
 
     # The following will give us all remaining device attributes as seen
     # in the original deviceQuery.
