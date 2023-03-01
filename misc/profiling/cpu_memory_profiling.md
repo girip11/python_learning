@@ -2,8 +2,13 @@
 
 ## Tools for profiling
 
-- CPU - **timeit** library. Mainly used for benchmarking.
-- CPU profiling using [cProfile](https://docs.python.org/3/library/profile.html#module-cProfile)
+- CPU profiling
+  - **timeit** library. Mainly used for benchmarking.
+  - [cProfile](https://docs.python.org/3/library/profile.html#module-cProfile)
+  - [Line Profiler](https://pypi.org/project/line-profiler/)
+
+CPU, GPU and memory [Scalene](https://github.com/plasma-umass/scalene)
+
 - Memory profiling using
   - [**Pympler**](https://github.com/pympler/pympler)
   - [memray](https://github.com/bloomberg/memray)
@@ -19,3 +24,5 @@
 ## References
 
 - [Pympler Home](https://pythonhosted.org/Pympler/)
+- [Scalene profiler](https://coderzcolumn.com/tutorials/python/scalene-cpu-and-memory-profiler-for-python-code)
+- [Memray: Memory Profiler for Python](https://morioh.com/p/6ecc3ab201e7)

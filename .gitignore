@@ -6,3 +6,4 @@ __pycache__/
 .metals/
 .venv/
 .python-version
+.ipython
