@@ -32,6 +32,7 @@ jupyter-http-over-ws = "^0.0.8"
 mypy = "^0.991"
 pytest = "^7.2.1"
 ruff = "^0.0.235"
+tuna = "^0.5.11"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
