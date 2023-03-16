@@ -239,7 +239,19 @@ x: Callable[[int, float], float] = f
 
 ### `Any` type and varargs
 
-- `Any` used in places where the return value belongs to dynamic type
+- `Any` used in places where the return value belongs to dynamic type.
+
+> Any other type behaves as if it is a subtype of `Any`, and `Any` behaves as if it is a subtype of any other type.
+
+- This behaviour of `Any` allows for **gradual typing** of python code. Say there is no type annotations, implicitly everything could be treated as `Any`.
+
+> Consistent Types - The type T is consistent with the type U if T is a subtype of U or either T or U is `Any`.
+> Formally, we say that a type T is a subtype of U if the following two conditions hold:
+>
+> - Every value from T is also in the set of values of U type.
+> - Every function from U type is also in the set of functions of T type.
+
+- With `Any`, any type checker would check for inconsistency in the typing.
 
 - If all `*args` or `**kwargs` are going to be of type `str`, we can use `str` to `*args` and `**kwargs`
 
@@ -260,38 +272,20 @@ def simple_func_any(*args: Any, **kwargs: Any) -> None:
 - Its a constrained type. `AnyStr = TypeVar("AnyStr", str, bytes)`
 - The argument passed to the parameter can be either str or bytes.
 
-## [Generics](https://docs.python.org/3/library/typing.html#user-defined-generic-types)
+## Type Annotations
 
-- Parameterize generics using `TypeVar`.
+- When we want to add metadata to the variable alongside type hints, we can use `typing. Annotated`. Available from python 3.9 onwards.
 
-```Python
-from typing import Type, TypeVar
+> A type `T` can be annotated with metadata `x` via the typehint `Annotated[T, x]`. This metadata can be used for either static analysis or at runtime.
 
-# create a type parameter
-T = TypeVar('T')
+- Annotations must be called with **atleast two arguments**but have can many(vardiac)
 
-def deserialize(json: str, cls: Type[T]) -> T:
-    pass
-```
+```python
+from typing import Annotated
 
-- User defined class using generics can be created
+def get_pitch_area(x: Annotated[float, "meters"], y: Annotated[float, "meters"]) -> Annotated[float, "square meters"]:
+    ...
 
-```Python
-from typing import Generic, TypeVar
-# create a type parameter
-T = TypeVar('T')
-
-# Below is equivalent to class Myclass[T] in C#
-# This makes T valid as a type within the class body.
-class Myclass(Generic[T]):
-    pass
-```
-
-- Generic constraints
-
-```Python
-# S can be of type S or int or str
-S = TypeVar('S', int, str)
 ```
 
 ## Duck typing and Collections
@@ -448,7 +442,22 @@ VERSION: Final = "1.0.0"
 
 - `typing.cast(type, value)` - to cast value to type. Used by static type checkers only. No runtime impact.
 
-- `List["SomeClass"]` and `List[ForwardRef("SomeClass")]` are same.
+- `List["SomeClass"]` syntax can be used to refer to forward references and will be implicitly transformed to `List[ForwardRef("SomeClass")]` by the static type checking tools.
+
+- Another way to handle forward references is to use `__future__.annotations`. Python 3.7 and above this is available.
+
+```Python
+from __future__ import annotations
+
+class Deck:
+    @classmethod
+    def create(cls, shuffle: bool = False) -> Deck:
+        ...
+```
+
+Reason why we might not need to use forward references when importing `from __future__ import annotations` is
+
+> Note If `from __future__ import annotations` is used in Python 3.7 or later, **annotations are not evaluated at function definition time**. Instead, they are stored as strings in `__annotations__`, This makes it unnecessary to use quotes around the annotation.
 
 ---
 

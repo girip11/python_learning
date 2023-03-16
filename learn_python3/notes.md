@@ -1,27 +1,27 @@
 # Notes
 
-* Chapterwise notes from the book **Learn to code in python3**
+- Chapterwise notes from the book **Learn to code in python3**
 
 **NOTE**: `import this` - in the python console prints the **Zen of Python**
 
 ## Chapter 1
 
-* Python is interpreted language.
-* Group of statements form a block. Method/function comprises of blocks.
-* Indentation very important for interpreter to identify tokens.
+- Python is interpreted language.
+- Group of statements form a block. Method/function comprises of blocks.
+- Indentation very important for interpreter to identify tokens.
 
 ## Chapter 2
 
 Identifier naming rules
 
-* Identifier names case sensitive
-* Start with either alphabets(lower and upper case) or underscore
-* remaining characters can contain only alphabets, digits or underscore
-* reserved words cannot be used as identifiers.
-* `print` for console output and `input` for console input.
-* `print('messsage', end='')` prints the message to console and ends with empty string. By default print method ends the string with new line.
-* All reserved keywords are small case except the keywords **True** and **False**.
-* Type conversions
+- Identifier names case sensitive
+- Start with either alphabets(lower and upper case) or underscore
+- remaining characters can contain only alphabets, digits or underscore
+- reserved words cannot be used as identifiers.
+- `print` for console output and `input` for console input.
+- `print('messsage', end='')` prints the message to console and ends with empty string. By default print method ends the string with new line.
+- All reserved keywords are small case except the keywords **True** and **False**.
+- Type conversions
 
 ```Python
 # Returns True
@@ -73,30 +73,31 @@ print(constants.GRAVITY)
 
 ## Chapter 3
 
-* The operators are
-  * '+' addition
-  * '-' subtraction
-  * '*' multiplication
-  * '/' floating point division. Returns the quotient of the division as a floating point
-  * '//' Integer division. Returns the quotient of the division as integer.
-  * '%' Modulus - returns the remainder of division
-  * `**` exponent operator `a ** b` is interpreted as 'b' times 'a' or 'a' to the power of 'b'
-  * unary '+' and '-'
+- The operators are
 
-* In python there is **no ++(increment) and --(decrement)**
-* unary operators have higher precedence than binary operators and unary operators are right associative.
-* Operator precednce - PEDMAS
-    `P(paranthesis)E(Exponent)D(/, // and %)M(multiplication)A(addition)S(subtraction)`
-* Division and multiplication same precedence and addition and subtraction in same precedence.
-* All the binary operators are left associative except the assignment operator which is right associative.
-* Chained assignment
+  - '+' addition
+  - '-' subtraction
+  - '\*' multiplication
+  - '/' floating point division. Returns the quotient of the division as a floating point
+  - '//' Integer division. Returns the quotient of the division as integer.
+  - '%' Modulus - returns the remainder of division
+  - `**` exponent operator `a ** b` is interpreted as 'b' times 'a' or 'a' to the power of 'b'
+  - unary '+' and '-'
+
+- In python there is **no ++(increment) and --(decrement)**
+- unary operators have higher precedence than binary operators and unary operators are right associative.
+- Operator precednce - PEDMAS
+  `P(paranthesis)E(Exponent)D(/, // and %)M(multiplication)A(addition)S(subtraction)`
+- Division and multiplication same precedence and addition and subtraction in same precedence.
+- All the binary operators are left associative except the assignment operator which is right associative.
+- Chained assignment
 
   ```Python
   # Right most expression executed first
   a = b = c = d
   ```
 
-* Arithmetic shorthand operators
+- Arithmetic shorthand operators
 
   ```Python
   x *= 5 # same as x = x * 5
@@ -135,11 +136,11 @@ exp1 if condition else expr2
 result = (5 * 10) if eval(input('Enter number')) > 0 else 0
 ```
 
-* **and**, **or**(n-ary operators) and **not**(unary) are the logical operators in python.
+- **and**, **or**(n-ary operators) and **not**(unary) are the logical operators in python.
 
-* no **case** statement in python.
+- no **case** statement in python.
 
-* **pass** statement is a no-op statement in python. Helps to declare a no op loop or empty class
+- **pass** statement is a no-op statement in python. Helps to declare a no op loop or empty class
 
 ```Python
 # example
@@ -166,16 +167,16 @@ for loop_var in range(10):
     print(loop_var)
 ```
 
-* **break**(exit out of the loop) and **continue**(skips an iteration) keywords exists in python.
+- **break**(exit out of the loop) and **continue**(skips an iteration) keywords exists in python.
 
 ## Chapter 6
 
 Python has modules that consists of utility methods. Some of the useful python modules are math, time, random.
 
-* **math** contains methods to find log, sqrt, power, trigonometric functions etc
-* **random** contains methods like randint, randrange, seed, choice etc
-* **time** module contains important methods sleep, clock etc
-Syntax for importing methods inside modules
+- **math** contains methods to find log, sqrt, power, trigonometric functions etc
+- **random** contains methods like randint, randrange, seed, choice etc
+- **time** module contains important methods sleep, clock etc
+  Syntax for importing methods inside modules
 
 ```Python
 # Syntax to import specific methods only
@@ -208,17 +209,17 @@ def method_name(parameter_list):
     # method_block
 ```
 
-* Usually **main** method is written and treated as the driver to call in to other methods.
-* Documentation string(short as doc string) in python is a string enclosed between ''' or """ and present in the beginning of a file or beginning of a function.
-* The `None` keyword is used to define a null variable or an object. In Python, `None` keyword is an object, and it is a data type of the class `NoneType` . We can assign `None` to any variable, but you can not create other `NoneType` objects. **All variables that are assigned None point to the same object**.
+- Usually **main** method is written and treated as the driver to call in to other methods.
+- Documentation string(short as doc string) in python is a string enclosed between ''' or """ and present in the beginning of a file or beginning of a function.
+- The `None` keyword is used to define a null variable or an object. In Python, `None` keyword is an object, and it is a data type of the class `NoneType` . We can assign `None` to any variable, but you can not create other `NoneType` objects. **All variables that are assigned None point to the same object**.
 
 ## Chapter 8
 
-* global variables are declared outside all the functions.
-* **global** keyword declares global variables used inside a function.
-* global variables usage **discouraged** inside functions
-* Python supports default parameters. Non default parameters should come before default parameters.
-* Function **overloading does not work in python** like in C++ or java. But we can define functions accepting variable parameters.
+- global variables are declared outside all the functions.
+- **global** keyword declares global variables used inside a function.
+- global variables usage **discouraged** inside functions
+- Python supports default parameters. Non default parameters should come before default parameters.
+- Function **overloading does not work in python** like in C++ or java. But we can define functions accepting variable parameters.
 
 ```Python
 def say_hello(name = None):
@@ -252,7 +253,7 @@ func("Planets", first="Mercury", two= "Venus")
 func("Planets", **{"first": "Mercury", "two": "Venus"})
 ```
 
-* Function is a special kind of object. So to invoke a function always use paranthesis, otherwise the function object is referred to instead of invocation
+- Function is a special kind of object. So to invoke a function always use paranthesis, otherwise the function object is referred to instead of invocation
 
 ```Python
 print(type(sqrt))
@@ -262,7 +263,7 @@ name="John"
 print(f"{name.lower} vs {name.lower()}")
 ```
 
-* Function can be assigned to a variable and invoked through the variable.
+- Function can be assigned to a variable and invoked through the variable.
 
   ```Python
   x = print
@@ -271,7 +272,7 @@ print(f"{name.lower} vs {name.lower()}")
 
 ## Chapter 9
 
-* list elements gets defined within []
+- list elements gets defined within []
 
 ```Python
 lst = [1, 2, 3, 4, 5]
@@ -293,11 +294,11 @@ list1 = [0] * 10 # returns a list of size 10 filled with 0s
 list2 = [1, 2] * 2  # list becomes [1, 2, 1, 2]
 ```
 
-* lists are **mutable** data structures
-* comparing list with equality operator(==) compares each element in the list.
-* **is** operator checks if list1 is alias of list2, in other words if both the list variables point to the same list data structure in memory.
-* slicing the list `list[begin_index: end_index]`. Default begin_index is 0 and default end_index is length of the list to be sliced. Slices the array from begin index to (end index - 1).
-* slice assignment
+- lists are **mutable** data structures
+- comparing list with equality operator(==) compares each element in the list.
+- **is** operator checks if list1 is alias of list2, in other words if both the list variables point to the same list data structure in memory.
+- slicing the list `list[begin_index: end_index]`. Default begin_index is 0 and default end_index is length of the list to be sliced. Slices the array from begin index to (end index - 1).
+- slice assignment
 
 ```Python
 # how the slice assignment works
@@ -310,10 +311,10 @@ lst[2:2] = [100] # lst will now contain [1,2,100,10,20,30,6]
 # empty list sliced and new list elements inserted from index 2.
 ```
 
-* lists passed to functions as parameters, the parameter variable becomes alias of the list passed.
-* lists in python are mutable, heterogeneous (can contain objects of any type)
+- lists passed to functions as parameters, the parameter variable becomes alias of the list passed.
+- lists in python are mutable, heterogeneous (can contain objects of any type)
 
-* Iterating over different collections
+- Iterating over different collections
 
 ```Python
 # Iterating over list
@@ -341,15 +342,15 @@ for line in open("myfile.txt"):
 
 ## Chapter 10
 
- Sample programs to work on lists
+Sample programs to work on lists
 
 ## Chapter 11
 
-* Objects in python contains data and methods.
-* Methods between __ (double underscores) is meant for objects internal use only. Clients should not call these methods.
-* Str type/class contains useful methods like count, strip(equivalent to trim in java), lower, upper, startswith, endswith, find, format etc
-* strings are **immutable**.
-* lists contains methods like `insert`, `append`, `remove`, `index`, `sort`, `reverse` etc. Many of these methods modify the list itelf like insert, reverse, sort, append, remove etc
+- Objects in python contains data and methods.
+- Methods between \_\_ (double underscores) is meant for objects internal use only. Clients should not call these methods.
+- Str type/class contains useful methods like count, strip(equivalent to trim in java), lower, upper, startswith, endswith, find, format etc
+- strings are **immutable**.
+- lists contains methods like `insert`, `append`, `remove`, `index`, `sort`, `reverse` etc. Many of these methods modify the list itelf like insert, reverse, sort, append, remove etc
 
 ## Chapter 12
 
@@ -361,16 +362,16 @@ class ClassName:
   # constructor/initializer
   def __init__(self, parameters):
     # Initialization block
-  
+
   # to protect object attributes from external access,
   # prefix the attribute with the double underscore.
   # Such attributes cannot be accessed directly
   # from outside the objects of this class
 ```
 
-* To every method inside the object,we pass a parameter conventionally called as **self** which refers to the object itslef.
+- To every method inside the object,we pass a parameter conventionally called as **self** which refers to the object itslef.
 
-* Inheritance syntax
+- Inheritance syntax
 
 ```Python
 class ChildClass(ParentClass):
@@ -386,7 +387,7 @@ class ChildClass(ParentClass):
         # Child class constructor implementation follows
 ```
 
-* Python supports multiple inheritance
+- Python supports multiple inheritance
 
 ```Python
 # multiple inheritance syntax
@@ -399,8 +400,8 @@ class Subclass(SuperClass1, SuperClass2..):
 # This is how the diamond inheritance problem is handled
 ```
 
-* When calling methods of objects, we dont need to pass the object explicitly(to satisfy the self param), because python passes the instance implicitly to the method.
-* Any variable declared/defined in a class without self word becomes a class variable shared by all the instances of the class.
+- When calling methods of objects, we dont need to pass the object explicitly(to satisfy the self param), because python passes the instance implicitly to the method.
+- Any variable declared/defined in a class without self word becomes a class variable shared by all the instances of the class.
 
 ```Python
 class SampleClass:
@@ -466,7 +467,7 @@ Custom exceptions should inherit from the `class Exception`
 
 ## String Interpolation
 
-* Using **`%` formatting**. This is very old style. Recommended to use `str.format` starting python 3 or **f-strings** in newer versions(>=3.6).
+- Using **`%` formatting**. This is very old style. Recommended to use `str.format` starting python 3 or **f-strings** in newer versions(>=3.6).
 
 ```Python
 first="mercury"
@@ -477,7 +478,7 @@ print("First planet from Sun: %s. Second planet is %s"%(first,second))
 print("First planet from Sun: %(first)s. Second planet is %(second)s"%{"first":first, "second": second})
 ```
 
-* Using `str.format` method
+- Using `str.format` method
 
 ```Python
 first="mercury"
@@ -488,7 +489,9 @@ print("First planet from Sun: {0}. Second planet is {1}".format(first,second))
 print("First planet from Sun: {first}. Second planet is {second}".format(second=second, first=first))
 ```
 
-* Using **f-strings**. (Introduced in Python 3.6 onwards)
+- Examples on advanced usage of [python's string formatting can be found here](https://pyformat.info/)
+
+- Using **f-strings**. (Introduced in Python 3.6 onwards)
 
 ```Python
 # Works with both single quotes and double quotes
@@ -514,9 +517,9 @@ print(f"""
     """)
 ```
 
-* ![Number format table](./python_number_formatting.png)
+- ![Number format table](./python_number_formatting.png)
 
-* Using `Template` from `string` module.
+- Using `Template` from `string` module.
 
 ```Python
 from string import Template
@@ -532,7 +535,7 @@ print(template.substitute(name = name,age = age))
 
 ## References
 
-* Learn to code in python3 by Richard L.Halterman
-* [Python3 documentation](https://docs.python.org/3/tutorial/classes.html)
-* [String interpolation](https://realpython.com/python-string-formatting/)
-* [String formatting in python](https://mkaz.blog/code/python-string-format-cookbook/)
+- Learn to code in python3 by Richard L.Halterman
+- [Python3 documentation](https://docs.python.org/3/tutorial/classes.html)
+- [String interpolation](https://realpython.com/python-string-formatting/)
+- [String formatting in python](https://mkaz.blog/code/python-string-format-cookbook/)
