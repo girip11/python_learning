@@ -12,7 +12,9 @@ CPU, GPU and memory [Scalene](https://github.com/plasma-umass/scalene)
 - Memory profiling using
   - [**Pympler**](https://github.com/pympler/pympler)
   - [memray](https://github.com/bloomberg/memray)
-- [Valgrind](https://valgrind.org/) - Helps to profile compiled code.
+  - [objgraph](https://pypi.org/project/objgraph/) 
+  - [memory_profiler](https://github.com/pythonprofilers/memory_profiler)
+  - [Valgrind](https://valgrind.org/) - Helps to profile compiled code.
 
 ## Visualizing profiler data
 
